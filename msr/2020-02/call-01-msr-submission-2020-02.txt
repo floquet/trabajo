@@ -1,0 +1,18 @@
+Call 04 Monthly Status Report
+February 2020
+
+Call-01 Radar Cross Section
+1. Documented problems with MMViz:
+    Windows 10 environment (Desktop and virtual enviroment)
+    Linux environments: Debian, Fedora, Centos, Scientific Liux, Ubuntu
+2. MMViz exercises included Pill Tutorial and AFIT Sphere Tutorial
+3. Released two slide decks (rcs-chaska.pdf, rcs-afcap-carbon) documenting methods and results with Sciacca airframe in Mercury MoM 4.1.12
+    improved capability to extract complex fields values from ASCII output files
+    demonstrated capability to convert Mercury MoM complex field values for vertical and horizontal electric fields into and co- and cross-polarization states
+    demonstrated capability to compute mean total radar cross section (RCS)
+    demonstrated capability to present plots of showing RCS as a function of nose angle and frequency
+    demonstrated capability to extract and plot RCS as a function of frequency
+    prepared animation showing RCS for nose angle=[-pi, pi], and then sweeping through frequencies
+    modified plot routines to include a legend and display wavelength along with frequency
+    spoke with John Schaeffer (author of Mercury MoM) about his code.
+4. Developed first cut of algorithm to decompose RCS cross section into Fourier amplitudes.

@@ -1,0 +1,15 @@
+Dwight Decker <decker@bc.edu>
+
+Thu, Mar 5, 12:03 PM (20 hours ago)
+
+to me, Keith, Dima, Patricia
+Hi Dan,
+
+Here are our bullets for a February Call-04 report.
+
+    Participated in meetings and
+        interacted with sponsor to help understand and craft the concept of operations for POET and ALFA.
+        interacted with ERT prime collaborators to develop the architecture and scheduling for POET and ALFA
+    Provided specific guidance for evaluating and improving the performance of the 3D raytrace code being developed by ERT, including discussions with the code developer and written instructions for modifying and testing results. The focus was on a strategy for ensuring appropriate step size for the ray and establishing criteria to maintain propagation consistent with the physical limitations of ray optics
+    Worked on developing the Framework for the ALFA "Enhanced" prototype in python
+    Worked on translating Pharlap 2D raytracing capabilities into python

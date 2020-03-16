@@ -1,0 +1,70 @@
+ALI, ASHAR F DR-02 USAF AFMC AFRL/RDHEC <ashar.ali.1@us.af.mil>	Thu, Mar 5, 2020 at 3:54 PM
+To: Daniel Topa <daniel.topa@ertcorp.com>
+
+Hi Dan,
+
+
+
+I will be glad to help you but I am not sure if I have much to offer.
+
+
+
+SENTRi is really good at what it does and generation two is significantly different from generation one. They haven’t offered many training sessions recently and in fact there is no training yet for gen 2 at all. They are working on gen 2 training and then I am lobbying them to hold a session here at Kirtland. Gen 1 is much more mature, developed, and user friendly. Gen 1 is being maintained but the last major release was four years ago. Gen 2 has cool new capabilities and solvers but not very user-friendly as of right now. It is being actively developed with a major release every year. You probably want gen 1 because it is easier to obtain and it is easier to use.
+
+
+
+I haven’t had any training myself so won’t be able to help you much in person and the documentation that comes with SENTRi is all there is.
+
+
+
+For obtaining SENTRi, I will
+
+·         Send you the user agreement. Please read it thoroughly.
+
+·         Send you the CREATE on-boarding instructions. Please follow them to accept the user agreement and to formally request SENTRi (all done online using a CAC). The agreement must be signed every year. And note that SENTRi is export controlled and that it can only be used on government projects. Furthermore, any other individual, besides yourself, has to sign their own agreement and submit their own request. So your license can only be used by you.
+
+·         CC John D’Angelo who is the SENTRi program manager and he can help you with getting the current documentation and tutorials. He can also help you download gen 2 because only gen 1 is available on the portal.
+
+·         CC Tanya Rosen, who is the user account manager for people who want SENTRi. She will first verify that you are an authorized user and that you have a government sponsor who will vouch on your behalf. Then she will give you access.
+
+
+
+I will add you to the list of people potentially interested in training when it is offered at KAFB. No idea when it will happen though.
+
+
+
+Please let me know if  you have any other questions.
+
+
+
+Ashar
+[Quoted text hidden]
+ALI, ASHAR F DR-02 USAF AFMC AFRL/RDHEC <ashar.ali.1@us.af.mil>	Thu, Mar 5, 2020 at 3:55 PM
+To: Daniel Topa <daniel.topa@ertcorp.com>
+Cc: "D'ANGELO, JOHN N DR-04 USAF AFMC AFRL/RYMH" <john.dangelo.4@us.af.mil>, "Rosen, Tanya M CTR OSD HPCMP (USA)" <tanya.m.rosen.ctr@mail.mil>, "GREENWOOD, ANDREW D DR-04 USAF AFMC AFRL/RDHE" <andrew.greenwood@us.af.mil>
+
+Hi Dan,
+
+
+
+Here I am attaching the onboarding instructions and the license agreement to obtain SENTRi per my earlier email.
+
+
+
+You will need a government POC (who will vouch for you) when you are filling this out. This person can be your government sponsor for your contract. Please let them know to expect an email from Tanya who is the user accounts manager for CREATE-RF SENTRi.
+
+
+
+John D’Angelo is the program manager and he can help you with anything else (documentations, tutorials, how to get SENTRi gen 2, etc.)
+
+
+
+I am cc’ing both Tanya and John.
+
+
+
+Sincerely,
+
+
+
+Ashar

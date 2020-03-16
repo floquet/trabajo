@@ -1,0 +1,59 @@
+Call 04 Monthly Status Report
+February 2020
+
+Table of Contents
+=================
+1. Boston College
+2. Trevor Crawford
+3. Eric Lahti
+4. Matt Lietz
+5. Chris McGeorge
+6. Dan Topa
+7. Jon White
+
+
+Progress and Achievements
+=========================
+1. Boston College (BC)
+    Participated in meetings and
+        interacted with sponsor to help understand and craft the concept of operations for POET and ALFA.
+        interacted with ERT prime collaborators to develop the architecture and scheduling for POET and ALFA
+    Provided specific guidance for evaluating and improving the performance of the 3D raytrace code being developed by ERT, including discussions with the code developer and written instructions for modifying and testing results. The focus was on a strategy for ensuring appropriate step size for the ray and establishing criteria to maintain propagation consistent with the physical limitations of ray optics
+    Worked on developing the Framework for the ALFA "Enhanced" prototype in python
+    Worked on translating Pharlap 2D raytracing capabilities into python
+
+2. Trevor Crawford
+    Recently explored multiple implementations to reduce 3-D model computations - Boris correction, diffusive solutions, etc.
+        None of these implementations were appropriate for our modeling requirements
+    Currently exploring a reduced (force balanced) model implementation
+
+3. Eric Lahti
+    Created Low Fidelity Targeting Tool (LFTT) mockup to allow functional definition and interface development to begin
+
+4. Matt Lietz
+    Completed conversion of critical IRI routines from archeo-Fortran into C
+    Hooked up basic IRI capability JavaScript wbe browser
+    Documented the complete suite of parameters used to characterize the ionosphere
+    Met with customer to define a sophisticated set of ionospheres for testing modeling and simulation codes
+
+5. Chris McGeorge
+    Began writing a C version of the JavaScript IRI code (4600 lines created)
+    Began writing a JavaScript mesh representation of the cloud
+    Began analyzing and decomposing RIPE to estimate translation into C
+    Wrote detailed analysis of RIPE and ROAM capabilities
+
+6. Dan Topa
+    Developed architecture and 1800 lines of code for modeling gas cloud in ionosphere
+    Provided in-depth training for junior staff on the physics and mathematics of ray tracing.
+    Meetings with BC and RVBX scientists on ray tracer pathology of propagation through critical frequency layer
+    Engaged customer in discussions on a set of sample ionospheres to act as a regression test suite. (Further development by Matt Leitz.)
+    Read three papers on SMART ray tracer
+
+6. Jon White
+  Prepared C and Python codes to support Ray Tracer Release 1.0
+    Insured codes produced numerically equivalent answers
+    Added kill switch to to prevent rays from penetrating critical frequency
+    Met with customer to define features: fixed step size, 2D & 3D capability
+    Modularized integration methods
+    Prepared ray tracing animations for customer
+    Meetings with BC and government scientists on ways to improve ray tracer code

@@ -1,0 +1,14 @@
+Trevor Crawford
+
+Attachments9:14 AM (58 minutes ago)
+
+to me
+Dan,
+
+IRI Javascript translation variables are described in the attached document.
+
+Here are a few bullets for STC modeling efforts:
+
+    Recently explored multiple implementations to reduce 3-D model computations - Boris correction, diffusive solutions, etc.
+        None of these implementations were appropriate for our modeling requirements
+    Currently exploring a reduced (force balanced) model implementation

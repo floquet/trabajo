@@ -1,0 +1,107 @@
+Matthew Lietz
+
+Mon, Mar 2, 10:25 AM (4 days ago)
+
+to me, Ye, Eric
+All,
+
+I spoke to Nelson to further expand on his plan. Here was his criteria:
+
+Things to exercise:
+  1.) Diurnal variation:
+    a.) Day / Night (Test with 2PM for day and 3AM for night)
+    b.) Sunrise and Sunset (5,6,7AM for sunrise, 5,6,7PM for sunset)
+  2. Sunspot options: low (e.g. 10), medium, and high
+  3. Zenith options: accomplished with seasonal variation
+    a.) Season (December, March, June)
+
+Locations:
+1.) Virginia
+2.) Texas
+3.) Australia
+
+These inputs would all then be used to call the FORTRAN IRI source code to generate the coefficients and then create JSON files that would combine the range and azimuth (which is from the dashboard radar fan) with the coefficients outputted from IRI. The final step would then enable you to plot in an environment similar to the current dashboard with a fan that visualizes the HMF2 and FOF2 coefficients.
+
+Nelson expressed that this should be done before the proof-of-concept task so I will be focusing on completing this first.
+Matthew Lietz
+
+Thu, Feb 27, 7:41 AM (8 days ago)
+
+to me
+Here is the analysis I sent Nelson when he wanted the same analysis of subroutines that are needed:
+
+IRI coefficient expansion subroutines:
+
+XE_1 - COMMONBLOCK1: HMF2
+          - COMMONBLOCK3: HZ
+          - COMMONBLOCK4: HME, HEF
+
+TOPQ (AKA XE1) - COMMONBLOCK1: HMF2, XNMF2
+                              - COMMONBLOCK11: B2TOP
+
+XE2 (Also XE3_1) - COMMONBLOCK1: HMF2,XNMF2
+                              - COMMONBLOCK2: B0, B1
+
+XE4_1 - COMMONBLOCK3: HZ,T,HST
+            - COMMONBLOCK4: HEF
+
+
+XE5 - COMMONBLOCK4: HME, XNME, HEF
+        - COMMONBLOCK5: NIGHT, E(4)
+
+XE6 - COMMONBLOCK4: HME, XNME, HEF
+        - COMMONBLOCK6: HMD,XNMD,HDX
+        - COMMONBLOCK7: D1,XKK,FP30,FP3U,FP1,FP2
+
+Global / Common block variables used:
+
+HMF2: input
+HZ:  calculated by using REGFA1 subroutine outputs
+HME: Set to 110
+HEF: calculated in HPOL subroutine outputs
+XNMF2: calculated from fof2 input
+B2TOP: calculated from XMOUT output
+B0: input
+B1: input
+T: calculated by using REGFA1 subroutine outputs
+HST: calculated by using REGFA1 subroutine outputs
+XNME: calculated from XMDED
+NIGHT: calculated from SOCO output
+E: calculated in TAL
+HMD: calculated in HPOL subroutine outputs
+XNMD: calculated from FOEEDI subroutine output
+HDX: calculated in HPOL subroutine outputs
+D1: calculated in HPOL subroutine outputs
+XKK: calculated from HPOL subroutine outputs
+FP30: calculated in HPOL subroutine outputs
+FP3U: calculated in HPOL subroutine outputs
+FP1: calculated in HPOL subroutine outputs
+FP2: calculated in HPOL subroutine outputs
+
+Subroutines translated:
+    read_ig_rz: assigns AIG and ARZ common arrays (Used in TCON) from reading in IG_RZ file
+    readapf107: assigns AAP and AF107 common arrays (Used in APF_ONLY) from reading in APF107 file
+    MODA: calculates the current day of the year and is used in tcon to calculate rsn which is used in rzar computation
+    FELDCOF: uses arrays gh1 and gh2 (that were read in as the coefficient files (igrf model files)) that is used in feldg
+    IGRF_DIP: calculates variables used for processing in HPOL and TAL functions
+    TCON: Uses read_ig_rz common blocks to calculate ttt(Needed for B2TOP) and rzar(Needed for B2TOP calculation and factor for CCIR NUMERICAL MAP COEFFICIENTS passed into GAMMA1) which are used for
+    APF_ONLY: Uses readapf107 common blocks to calculate the F10.7 12-month running mean which is used in FOEEDI
+    SOCO: calculate the solar declination, zenith angle, and sunrise & sunset times which is then used for determining if night or day time, and passed into FOEEDI
+    XMOUT: calculates propagation factor m3000 by calling GAMMA1
+    FOEEDI: calculates variable to be assigned in XNMD global as well as used for D1, T common variable calculation
+    HPOL: compute variables to be used in calculating COMMONBLOCK7 D1 and COMMONBLOCK7 FP30,FP3U,FP1,FP2 used in XE6 as well as HME,HDX and HEF globals
+    TAL: computes SPT array which is is COMMONBLOCK5 E array used in XE5
+    XMDED: calculates a varialbe that is used in global D1 computation and XNME global
+    REGFA1: calculates output variables used for COMMONBLOCK3 HZ, T, HST
+    EPST: function called in HPOL to calculate a value
+    FELDG (Called in IGRF_DIP) which uses the arrays computed in feldcof to calculate magnetic declination in degrees, magnetic inclination (dip) in degrees
+    dip latitude in degrees and modified dip latitude
+    EXTRASHC: called in FELDCOF to generate coefficients which is fed back into the gh1 and gh2 arrays
+    GAMMA1 (Called in XMOUT): computes variables to be used in B2TOP global variable
+    TOPQ (Called in XE1)
+
+    also translated XE_1, XE2, XE4_1, XE5, XE6 for getting the electron density. XE3_1 was mapped to XE2 and XE1 was just rewritten to TOPQ since we are using the NeQuick option and both of these two parent calling functions would just call the sibling function.
+
+Let me know if you have any questions on this,
+
+Matt

@@ -1,0 +1,23 @@
+christopher.mcgeorge@ertcorp.com
+
+Mon, Mar 2, 12:38 PM (4 days ago)
+
+to Eric, me
+
+Eric and Dan,
+
+
+
+Following are my MSR bullet points for February:
+
+
+
+    RCS
+        Prepared MMViz videos that demonstrate MMViz errors
+
+
+
+    HF-POET
+        Began writing a C version of the JavaScript IRI code
+        Began writing a JavaScript mesh representation of the cloud
+        Began analyzing and decomposing RIPE to estimate translation into C
