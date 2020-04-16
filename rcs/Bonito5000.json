@@ -1,0 +1,15 @@
+{
+	"Label":"Bonito5000",
+	"ICONImage":"Bald_Eagle-sm.png",
+	"description":"Aircraft",
+	"nominalSpeed":400,
+	"CIT":2,
+	"crossSection":[
+		{"Deg":1,"Freq":3,"Val":4.16411},
+		{"Deg":1,"Freq":5,"Val":18.2776},
+		{"Deg":2,"Freq":3,"Val":4.14247},
+		{"Deg":2,"Freq":5,"Val":18.2369},
+		{"Deg":3,"Freq":3,"Val":4.07319},
+		{"Deg":3,"Freq":5,"Val":18.1199}
+	]
+}

@@ -1,0 +1,56 @@
+AFRL SESDMA BAA Internal weekly status meeting
+
+Ye: Sign telecommute agreement from ERT
+
+Start with Call 04 first
+
+Jon
+    will provide coordinate transformation to Matt today.
+    will work on JavaScript version of release 1.0
+    next up: fixed step size
+
+Matt
+    producing test suite of json coefficients: wrap with Python to call IRI routines
+    delivering tool for Nelson to tinker with
+    wants to talk with Chris about IRI and PhaRLaP in
+
+Chris
+    IRI conversion going well
+    Running down numerical differences
+
+Keith
+    QPS and VI data ingest - deliver end of fiscal year
+    OI skating - delivered at end of fiscal year
+
+Ye
+    will provide updated Gannt chart to Nelson so that he sees the plan moving forward
+    in June we get two functions to compute height and width of cloud
+
+Dan
+    working on demonstration of cloud modeling output: quick deliverable
+
+Call 01
+
+STC
+    (other) Matt has been supporting plotting with Paraview: asks for mesh file from Trevor
+    Trevor: has request from Dan - needs to write analysis tool to clip excess velocities to allow longer time steps
+        can't access DREN from home
+
+Eric: dashboard and space weather messaging
+    no movement on dashboard - no movement soon
+    space weather message: complete redesign of translation environment
+    trying to get the whole thing on his Apache webserver at home: system seems flexible
+    needs VI sample files (from Denig)
+    nothing for Matt Lietz now
+
+Dan
+    finishing today a report on using a Fourier representation of the RCS spectrum
+    will send e-mail to JS wizzards describing MoM output grid
+    once handed the JSON format for a grid, will generate MoM data in that format
+    will document the effects of averaging MoM data points
+    Ye: let's close phase 1, declare victory, write a report
+
+Jon Duong
+    installed AFCAP on system: trouble with some installs (TomCat)
+
+Ye: be safe, communicate

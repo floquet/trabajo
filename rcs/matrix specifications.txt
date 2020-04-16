@@ -1,0 +1,34 @@
+The MoM RCS data is delivered in a matrix with m rows and n columns (standard matrix addressing).
+
+1 <= m <= 28 MHz (integer steps)
+1 <= n <= 90 degrees (integer steps)
+
+The matrix is WIDE (more columns than rows)
+
+Frequency partition:
+row 1: 3 MHz
+row 2: 4 MHz
+ .  .  .  .
+row 28: 30 Mhz
+
+Let r index the rows. Then frequency nu is in row = nu -2
+
+Angular partition
+col 1: 0  col 2: 1 ... col 181: 180
+
+col 1   col 2   col 3       col 181
+  0       1       2    ...    180
+
+Let c be the column index. The measurement for angle alpha is in column c = alpha + 1
+
+The test asset is symmetric: sigma(alpha) = sigma(-alpha)
+
+But the matrix can easily be delivered in other forms, such as the transpose (interchange rows and columns), or packed into a linear array.
+
+
+Sample:
+
+4.16411, 4.14247, 4.07319, 3.95637, 3.79263, 3.58287, 3.32827, 3.0303, ...
+18.2776, 18.2369, 18.1199, 17.9248, 17.6523, 17.3041, 16.8817, 16.3876, ...
+25.6306, 25.5886, 25.463, 25.2538, 24.9618, 24.5882, 24.1346, 23.6028, ...
+...

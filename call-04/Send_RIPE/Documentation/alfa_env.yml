@@ -1,0 +1,14 @@
+name: alfa
+channels:
+- bioconda
+- conda-forge
+- defaults
+dependencies:
+- dicttoxml=1.7.4=py36_0
+- matplotlib=2.0.2=np113py36_0
+- numpy=1.13.1=py36_0
+- requests=2.18.4=py36_1
+- scipy=0.19.1=np113py36_0
+- pip:
+  - backports-abc==0.5
+prefix: /Users/raa0096/miniconda3/envs/alfa

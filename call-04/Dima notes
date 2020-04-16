@@ -1,0 +1,54 @@
+Here is further elaboration on 11 parameter set.
+
+Also see attached flow chart.
+
+[foF2, hmF2, B0, B1] - Interpolated with RIPE using  digisonde data
+[foEs, hmEs] - taken from digisonde data directly
+[beta_lat, beta_lon] - calculated with ROAM
+
+[foE, hmE] - IRI values used
+[foF1] - currently IRI value is used, the plan is, however, to take it from digisonde data (either vertical or oblique)
+
+The flow is approximately like this:
+1. Framework/Manager->IonomodelEngine/DataControl/DataController
+
+This grabs digisonde data from NOAA database.
+
+2. Framework/Manager->IonomodelEngine/ROAM/ROAM->IonomodelEngine/RIPE/RIPE
+
+This returns the full 11-paramete set of ionospheric electron density parameters that we use for our ionosphere specification.
+
+
+The full set consists of 11 parameters: [foF2, hmF2, foF1, foE, hmE, B0, B1, foEs, hmEs, beta_lat, beta_lon]
+
+[foF2, hmF2, B0, B1] are taken from digisonde measurement and "smoothed" with RIPE
+[foEs, hmEs] are taken from digisonde measurement directly
+[foF1, foE, hmE] are calculated by IRI
+[beta_lat, beta_lon] are calculated by ROAM
+
+Major points are these:
+
+1. Please, let's change the name of the package we are dealing with.
+
+We used to call this whole thing "TICS" before in HFGeo project.
+
+RIPE is one module, albeit central of the TICS package, see Figure 2 for illustration.
+
+From programmatic point of view, calling this whole package "RIPE" causes confusion, e.g., "ROAM is a part of RIPE which calls RIPE" - this makes no sense.
+
+We can still call it TICS (Theater Ionospheric Characterization System) unless someone can come up with better name.
+
+2. We won't use IRTAM, so that eliminates one of the headaches.
+
+3. There is a statement that no Scipy library is used, which I find to be wrong since at least RIPE, ROAM, and FitProfile use griddata, interpolate and minimize functions. There may be other instances of scipy use.
+
+4. SaoPyIface and libsaopy_lin.so.
+
+Here the story is a bit more convoluted.
+
+As of right now, TICS/RIPE downloads SAO.ASCII format data from NOAA database.
+
+I used the existing fortran code saoread.f program to read those files.
+We have the source code (it is in  /Fit/source/) so we have a number of ways to translate this part into C, does not have to be static library.
+
+However, the OI data will come as SAO.XML file, for which I do not even have a (python) reader yet. It should be rather straightforward to read/write XML files in python, but in C that will probably more pain, unless you want to use some public library for that.

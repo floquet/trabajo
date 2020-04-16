@@ -1,0 +1,41 @@
+3-D HF Prop Simulation/Call-04
+BAA Bi-Weekly Tag-up with AFRL, BC, ERT
+2020 03 23
+
+Considerable discussion over the software name of RIPE. BC commented that the minimalist Python code which they first delivered has been augmented by code from ROAM.
+
+B.C. is quite happy with Chris's decomposition and will email a few comments to Chris. B.C. confessed that the definition of RIPE has been drifting with time.
+
+Nelson asks Dima for a list of the 11 ionospheric parameters which will specify the fundamental four, the latest eight.
+
+Nelson asks: Is there a specification for the grid to create a true electron density profile (EDP)?
+Dima: A true EDP is provided to PhaRLaP for interpolation.
+
+Nelson: The fundamental four parameters don't exploit the E region.
+Dima: Full RIPE + ROAM + PhaRLaP are needed for a full EDP which is generated as part of the grid.
+
+Nelson wants to generate data for a ray tracer and wants eight parameters to define bottom side.
+
+Dima: RIPE classic uses four parameters; ROAM uses 11. The other seven are provided by either IRI or a digisonde.
+
+Nelson: We need a full parameter set to develop an EDP.
+
+Nelson: The JSON file needs enough information to specify the bottom side instance.
+
+Dima: We need E layer information to run IRI and pass foE.
+
+Nelson: Avoid computation in the browser.
+
+Eric: we have an initial mock GUI which Nelson has seen and accepted.
+
+Nelson: Regarding the rocket and canister release, POET is to simply provide the (x, y, z) coordinates for a release point.
+
+The 110 oddity: Matt and Dima discussed how IRI may default to a value of 110 for hmE if no value is provided. Dima suggested a return value of -1 if no hmE is supplied.
+
+Jon White worked on minor JavaScript bugs this weekend and is awaiting results on his COVID-19 test. The 2D ray tracer is not working in JS. He noted a difference in the exponential function between JS and C and agreed to provide a table of entries for x and exp(x) from JS, and exp(x) from C.
+
+Issues and risks:
+Should the JSON file use the set of 11 parameters? Let's wait for Dima's writeup. The Nelson will decide.
+
+Ye: Significant risk factor is external dependence upon PhaRLaP. Can we get by using the present rustic ray tracers which don't accommodate a magnetic field?
+Keith: At low latitudes a sophisticated ray tracer is not needed. Early work in mid latitudes suggests the X and O differences will be appreciable.

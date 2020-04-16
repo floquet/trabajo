@@ -1,0 +1,19 @@
+Afternoon Scrum: Call 04
+2020 03 17 13:00
+Happy St. Patrick's Day
+
+Jon:
+    Fixed errors caused by misplaced cloud
+    Will deliver coordinate system transformation code to Matt today
+    Still developing in node.js for simpler testing
+
+Trevor:
+    Planning to sneak into the Forbidden Zone tomorrow to harvest data from Jenko, retrieve WiFi puck 
+
+Eric:
+    Ray tracer should be mature enough to allow plugging into mockup and resolving interface issues
+
+Dan:
+    Asked for velocity and altitude of canister at release time
+        Will use 175 km altitude (Chris Fallen guess)
+        Will look for sounding rocket profiles to pick a velocity

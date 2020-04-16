@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <button onclick='runDemo()'>Run</button>
+        <label id='outputLabel'></label>
+        <script type='text/javascript'>
+
+            function calculate(alpha2, alpha3) {
+                return 1.0 + (2.0 * Math.cos(alpha2)) + (3.0 * Math.cos(alpha3));
+            }
+
+            function runDemo() {
+                const outputLabelElement = document.getElementById('outputLabel');
+                outputLabelElement.innerText = 'Result: ' + calculate(1, 2);
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,3 @@
+This directory contains the IRI coefficients we used with IRI2016bc during Phase 2 of the HFGeo program under Matlab
+
+We are using this temporarily with the Python version of IRI in order to as closely as possible reproduce the results from IRI2016bc.
