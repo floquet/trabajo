@@ -1,0 +1,20 @@
+#
+#----------------------------------------------------------------
+#
+
+SHELL   = /bin/csh
+
+MAKE	= /usr/bin/gmake
+
+CC      = /usr/bin/gcc
+GCC	= /usr/bin/g++
+CXX	= /usr/bin/g++
+F77     = /usr/bin/gfortran
+F90	= /usr/bin/gfortran
+COMP	= /usr/bin/gfortran
+FC	= $(F90)
+CFLAGS  = -O -fPIC -DLINUX
+#CFLAGS  = -Wall -Werror -O -fPIC -DLINUX
+FFLAGS  = -O2 -fPIC -ffixed-line-length-132 
+NOSCORE = -fno-underscoring
+OPTIONS = -fbounds-check -O -Wimplicit
