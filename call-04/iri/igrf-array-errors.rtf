@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red251\green2\blue7;\red154\green154\blue154;\red0\green0\blue255;
+\red251\green2\blue7;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c14913\c0;\csgray\c66775;\cssrgb\c1680\c19835\c100000;
+\cssrgb\c100000\c14913\c0;}
+\margl1440\margr1440\vieww14600\viewh7760\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 Warning: Array reference \'85 out of bounds (3333 > 100) in loop\cf3 \
+ \
+ 165       SUBROUTINE SHELLG(GLAT,GLON,ALT,FL,ICODE,B0)\
+ 168 C CALCULATES L-VALUE FOR SPECIFIED GEODAETIC COORDINATES, ALTITUDE\
+ 169 C AND GEMAGNETIC FIELD MODEL.\
+\
+ 204       \cf4 DIMENSION\cf3          V(3),U(3,3),\cf4 P(8,\cf2 100\cf4 )\cf3 ,SP(3)\
+\
+ 293       DO 3 \cf4 N=3,\cf2 3333\cf3                                               \
+ 294 C*****CORRECTOR (FIELD LINE TRACING)                             \
+ 295       \cf4 P(1,\cf5 N\cf4 )\cf3 =\cf4 P(1,\cf5 N-1\cf4 )\cf3 +STEP12*(5.*\cf4 P(4,\cf2 N\cf4 )\cf3 +8.*\cf4 P(4,\cf2 N-1\cf4 )\cf3 -\cf4 P(4,\cf5 N-2\cf4 )\cf3 )    \
+ 296       P\cf4 (2,\cf2 N\cf4 )\cf3 =\cf4 P(2,\cf2 N-1\cf4 )\cf3 +STEP12*(5.*\cf4 P(5,\cf2 N\cf4 )\cf3 +8.*\cf4 P(5,\cf2 N-1\cf4 )\cf3 -\cf4 P(5,\cf2 N-2\cf4 )\cf3 )    \
+ 297 C*****PREPARE EXPANSION COEFFICIENTS FOR INTERPOLATION           \
+ 298 C*****OF SLOWLY VARYING QUANTITIES                               \
+ 299       \cf4 P(8,\cf2 N\cf4 )\cf3 =STEP2*(\cf4 P(1,\cf2 N\cf4 )\cf3 *\cf4 P(4,\cf2 N\cf4 )\cf3 +\cf4 P(2,\cf2 N\cf4 )\cf3 *\cf4 P(5,\cf2 N\cf4 )\cf3 )                 \
+ 300       C0=\cf4 P(1,\cf2 N-1\cf4 )\cf3 **2+\cf4 P(2,\cf2 N-1\cf3 )**2                                 \
+ 301       C1=\cf4 P(8,\cf2 N-1\cf4 )\cf3                                                 \
+ 302       C2=(\cf4 P(8,\cf2 N\cf4 )\cf3 -\cf4 P(8,\cf2 N-2\cf4 )\cf3 )*0.25                                  \
+ 303       C3=(\cf4 P(8,\cf2 N\cf4 )\cf3 +\cf4 P(8,\cf2 N-2\cf4 )\cf3 -C1-C1)/6.0\
+ 304       D0=\cf4 P(6,\cf2 N-1\cf4 )\cf3                                                 \
+ 305       D1=(\cf4 P(6,\cf2 N\cf4 )\cf3 -\cf4 P(6,\cf2 N-2\cf4 )\cf3 )*0.5\
+ 306       D2=(\cf4 P(6,\cf2 N\cf4 )\cf3 +\cf4 P(6,\cf2 N-2\cf4 )\cf3 -D0-D0)*0.5                             \
+ 307       E0=\cf4 P(7,\cf2 N-1\cf4 )\cf3 \
+ 308       E1=(\cf4 P(7,\cf2 N\cf4 )\cf3 -\cf4 P(7,\cf2 N-2\cf4 )\cf3 )*0.5                                   \
+ 309       E2=(\cf4 P(7,\cf2 N\cf4 )\cf3 +\cf4 P(7,\cf2 N-2\cf4 )\cf3 -E0-E0)*0.5                             \
+ 310 C*****INNER LOOP (FOR QUADRATURE)                                \
+ 311 4     T=(Z-\cf4 P(3,\cf2 N-2\cf4 )\cf3 )/STEP                                        \
+ 312       IF(T.GT.1.)GOTO5                                           \
+ 313       HLI=0.5*(((C3*T+C2)*T+C1)*T+C0)                            \
+ 314       ZQ=Z*Z\
+ 315       R=HLI+SQRT(HLI*HLI+ZQ)\
+ 316       IF(R.LE.RMIN)GOTO30                               \
+ 317       RQ=R*R\
+ 318       FF=SQRT(1.+3.*ZQ/RQ)                              \
+ 319       RADIK=B0-((D2*T+D1)*T+D0)*R*RQ*FF                 \
+ 320       IF(R-RMAX)44,44,45                                \
+ 321 45    ICODE=2                                           \
+ 322       RADIK=RADIK-12.*(R-RMAX)**2                       \
+ 323 44    IF(RADIK+RADIK.LE.ORADIK) GOTO 10\
+ 324       TERM=SQRT(RADIK)*FF*((E2*T+E1)*T+E0)/(RQ+ZQ)      \
+ 325       FI=FI+STP*(OTERM+TERM)                            \
+ 326       ORADIK=RADIK                                      \
+ 327       OTERM=TERM                                        \
+ 328       STP=R*STEQ                                        \
+ 329       Z=Z+STP                                           \
+ 330       GOTO4                                             \
+ 331 C*****PREDICTOR (FIELD LINE TRACING)                    \
+ 332 5     \cf4 P(1,\cf2 N+1\cf4 )\cf3 =\cf4 P(1,\cf2 N\cf4 )\cf3 +STEP12*(23.*\cf4 P(4,\cf2 N\cf4 )\cf3 -16.*\cf4 P(4,\cf2 N-1\cf4 )\cf3 +5.*\cf4 P(4,\cf2 N-2\cf4 )\cf3 )  \
+ 333       \cf4 P(2,\cf2 N+1\cf4 )\cf3 =\cf4 P(2,\cf2 N\cf4 )\cf3 +STEP12*(23.*\cf4 P(5,\cf2 N\cf4 )\cf3 -16.*\cf4 P(5,\cf2 N-1\cf4 )\cf3 +5.*\cf4 P(5,\cf2 N-2\cf4 )\cf3 )  \
+ 334       \cf4 P(3,\cf2 N+1\cf4 )\cf3 =\cf4 P(3,\cf2 N\cf4 )\cf3 +STEP                                          \
+ 335       CALL STOER(\cf4 P(1,\cf2 N+1\cf3 ),BQ3,R3)                                   \
+ 336 C*****SEARCH FOR LOWEST MAGNETIC FIELD STRENGTH\
+ 337       IF(BQ3.LT.BEQU) THEN\
+ 338         IEQU=N+1\
+ 339         BEQU=BQ3\
+ 340         ENDIF\
+ 341 3     CONTINUE\
+\
+\
+\cf2 Warning: Array reference \'85 out of bounds (66 > 45) in loop [-Wdo-subscript]\
+\cf3 \
+2370 	SUBROUTINE IGRF(IY,NM,R,T,F,BR,BT,BF)\
+2372 C     CALCULATES COMPONENTS OF THE MAIN (INTERNAL) GEOMAGNETIC FIELD IN SPHERICAL\
+2373 C     GEOGRAPHICAL COORDINATE SYSTEM, USING IAGA INTERNATIONAL GEOMAGNETIC REFERENCE\
+2374 C     MODEL COEFFICIENTS (e.g., http://www.ngdc.noaa.gov/IAGA/wg8/igrf2000.html)\
+\
+2411       DIMENSION A(11),B(11),\cf4 DG(\cf2 45\cf4 )\cf3 ,\cf4 DH(\cf2 45\cf4 )\cf3 ,G(66),H(66),REC(66),\
+\
+3095       \cf4 DO 40 N=1,\cf2 66\cf3 \
+3096          G(N)=G2015(N)\
+3097          H(N)=H2015(N)\
+3098          IF (N.GT.45) GOTO 40\
+3099          G(N)=G(N)+\cf4 DG(N)\cf3 *DT\
+3100          H(N)=H(N)+\cf4 DH(N)\cf3 *DT\
+3101 40    CONTINUE\
+}

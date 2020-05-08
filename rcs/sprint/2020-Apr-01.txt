@@ -1,0 +1,27 @@
+RCS Sprint Plan: Two Weeks
+8 May 2020
+
+1. Deliverable rough Draft Report Tues
+2. Technical interchange on Friday
+3. Ship
+    create CAD model
+    RCS analysis and display results graphically
+4. 3D data
+    deliver data set from MoM using two angles
+    deliver bash scripts to collect MoM data for two angles
+    deliver tools to craft bash scripts
+    deliver some analysis on data at nonzero elevation
+5. HDF5
+    demonstrate ability to store RCS data by frequency, azimuth, and, elevation using HDF5
+    deliver rough tools to create and populate HDF5
+6. Sciacca airframe
+    compute dimensions
+    recreate airframe
+    improve meshing and demonstrate results
+    double size
+7. Jupyter
+    Demonstrate ability to execute binary files within Jupyter
+    Demonstrate ability to run Python scripts, include images, use LaTeX formulation
+8. Python
+    Collect Python tools previously written
+    Deliver Python tool to perform Fourier decomposition on radar data

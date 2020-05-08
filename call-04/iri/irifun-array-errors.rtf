@@ -1,0 +1,644 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red251\green2\blue7;\red154\green154\blue154;\red0\green0\blue255;
+\red154\green154\blue154;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c14913\c0;\csgray\c66775;\cssrgb\c1680\c19835\c100000;
+\csgray\c66775;}
+\margl1440\margr1440\vieww14600\viewh7760\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 Warning: Array reference \'85 out of bounds (-1 < 0) in loop\'85 [-Wdo-subscript]\
+\cf3  \
+5425       SUBROUTINE SCHNEVPDH (RZ,FLAT,FLON,R,T,L,BN,BE,BV)\
+5426 C------------------------------------------------------------------------\
+5427 C WHEN L IS POSITIVE:\
+5428 C COMPUTES SPHERICAL CAP HARMONIC (GEOCENTRIC) FIELD COMPONENTS\
+5429 C HORIZONTAL NORTH BN,HORIZONTAL EAST BE,AND VERTICAL DOWNWARD BV.\
+5430 C WHEN L IS NEGATIVE:\
+5431 C COMPUTES GENERAL FUNCTION BV, ITS HORIZONTAL NORTH DERIVATIVE BN,\
+5432 C AND ITS HORIZONTAL EAST DERIVATIVE BE, ON SPHERICAL CAP SURFACE.\
+\
+5460       \cf4 DIMENSION   DELT(\cf2 0\cf4 :LDIM)\cf3 \
+\
+5512       DO 102 I=1,KT\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 5513 \cf3       IF (I .EQ. 1)  THEN\
+\cf5 5514 \cf3          IF (IBF .LE. 1) THEN\
+\cf5 5515 \cf3              DELT(I) = DEL\
+\cf5 5516 \cf3              ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 5517 \cf3              ST = SIN(DEL)\
+\cf5 5518 \cf3              DELT(I) = ST\
+\cf5 5519 \cf3              ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 5520 \cf3              DELT(I) = COS(DEL)\
+\cf5 5521 \cf3              ELSE\
+\cf5 5522 \cf3              DELT(I) = SIN(DEL)\
+\cf5 5523 \cf3              ENDIF\
+\cf5 5524 \cf3          GO TO 102\
+\cf5 5525 \cf3          ENDIF\
+\cf5 5526 \cf3       IF (IBF .EQ. 0)  THEN\
+\cf5 5527 \cf3           DELT(I) = DELT(I-1)*DEL\
+\cf5 5528 \cf3       ELSE IF (IBF .EQ. 1)  THEN\
+\cf5 5529 \cf3           RECIP = 1./FLOAT(I)\
+\cf5 5530 \cf3           DELT(I) = (2.-RECIP)*DELT(I-1)*DEL - (1.-RECIP)*\cf4 DELT(I-2)\cf3 \
+\cf5 5531 \cf3       ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 5532 \cf3            IF ((I/2)*2 .EQ. I)  THEN\
+\cf5 5533 \cf3              IF (I .EQ. 2)  THEN\
+\cf5 5534 \cf3                 CT = COS(DEL)\
+\cf5 5535 \cf3                 DELT(I) = CT\
+\cf5 5536 \cf3                 ELSE\
+\cf5 5537 \cf3                 DELT(I) = \cf4 DELT(I-2)\cf3 *CT - \cf4 DELT(I-3)\cf3 *ST\
+\cf5 5538 \cf3                 ENDIF\
+\cf5 5539 \cf3              ELSE\
+\cf5 5540 \cf3              DELT(I) = DELT(I-2)*CT + DELT(I-1)*ST\
+\cf5 5541 \cf3              ENDIF\
+\cf5 5542 \cf3       ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 5543 \cf3           DELT(I) = COS(I*DEL)\
+\cf5 5544 \cf3       ELSE IF (IBF .EQ. 4)  THEN\
+\cf5 5545 \cf3           DELT(I) = SIN(I*DEL)\
+\cf5 5546 \cf3       ELSE\
+\cf5 5547 \cf3           GO TO 999\
+\cf5 5548 \cf3       ENDIF\
+\cf5 5549 \cf3   102 CONTINUE\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (-1 < 0) in loop\'85 [-Wdo-subscript]\
+\cf3 \
+5214	SUBROUTINE  SHAMDHMF2 (RLAT,FLON,T,RZ,HMF2)\
+5215 C-------------------------------------------------------------------\
+5216 C	COMPUTES THE HOURLY VALUES OF hmF2 FROM A SET OF SH COEFFICIENTS\
+5217 C	IN A POINT OF A GIVEN GEOCENTRIC LATITUDE AND LONGITUDE OF THE \
+5218 C	EARTH'S SURFACE FOR A GIVEN MONTH AND A GIVEN SUNSPOT NUMBER.\
+\
+5240       \cf4 DIMENSION\cf3    \cf4 BINT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 ,\
+5241      *            \cf4 BEXT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\
+\cf3 \
+\
+5377	  DO 500 N=0,KMAX\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 5378	\cf3 	  DO \cf4 500 M=\cf2 0\cf4 ,N\cf3 \
+\cf5 5379	\cf3 \
+\cf5 5380	\cf3 	  DO J=0,KT\
+\cf5 5381	\cf3 	    GNM(N,M,J)=GANM(N,M,J)+GBNM(N,M,J)*rz\
+\cf5 5382	\cf3 	    HNM(N,M,J)=HANM(N,M,J)+HBNM(N,M,J)*rz\
+\cf5 5383	\cf3 	    ENDDO\
+\cf5 5384	\cf3  \
+\cf5 5385	\cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 5386	\cf3          IF (N .GT. KINT)  GO TO 500\
+\cf5 5387	\cf3          LJ = LINT\
+\cf5 5388	\cf3       ELSE\
+\cf5 5389	\cf3          IF (N .GT. KEXT)  GO TO 500\
+\cf5 5390	\cf3          LJ = LEXT\
+\cf5 5391	\cf3       END IF\
+\cf5 5392	\cf3 \
+\cf5 5393	\cf3       FN(N,M) = FLOAT(N)\
+\cf5 5394	\cf3 \
+\cf5 5395	\cf3       IF (M .GT. 0)  GO TO 300\
+\cf5 5396	\cf3       DO 301 J=1-IBO-JBO,KT\
+\cf5 5397	\cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 5398	\cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 5399	\cf3       ELSE\
+\cf5 5400	\cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 5401	\cf3          END IF\
+\cf5 5402	\cf3   301 CONTINUE\
+\cf5 5403	\cf3       GO TO 500\
+\cf5 5404	\cf3   300 continue\
+\cf5 5405	\cf3       DO 302 J=1-IBO-JBO,LJ\
+\cf5 5406	\cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 5407	\cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 5408	\cf3          \cf4 BINT(\cf2 M-1\cf4 ,N,J)\cf3  = HNM(N,M,J)\
+\cf5 5409	\cf3       ELSE\
+\cf5 5410	\cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 5411	\cf3          \cf4 BEXT(\cf2 M-1\cf4 ,N,J)\cf3  = HNM(N,M,J)\
+\cf5 5412	\cf3          END IF\
+\cf5 5413	\cf3   302 CONTINUE\
+\cf5 5414	\cf3 C\
+5415  500 CONTINUE\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (-1 < 0) in loop\'85 [-Wdo-subscript]\
+\cf3 \
+5425       SUBROUTINE SCHNEVPDH (RZ,FLAT,FLON,R,T,L,BN,BE,BV)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 5426 \cf3 C------------------------------------------------------------------------\
+\cf5 5427 \cf3 C WHEN L IS POSITIVE:\
+\cf5 5428 \cf3 C COMPUTES SPHERICAL CAP HARMONIC (GEOCENTRIC) FIELD COMPONENTS\
+\cf5 5429 \cf3 C HORIZONTAL NORTH BN,HORIZONTAL EAST BE,AND VERTICAL DOWNWARD BV.\
+\cf5 5430 \cf3 C WHEN L IS NEGATIVE:\
+\cf5 5431 \cf3 C COMPUTES GENERAL FUNCTION BV, ITS HORIZONTAL NORTH DERIVATIVE BN,\
+\cf5 5432 \cf3 C AND ITS HORIZONTAL EAST DERIVATIVE BE, ON SPHERICAL CAP SURFACE.\
+\cf5 5433 \cf3 C NOTE THAT THESE ARE METRICAL DERIVATIVES, AND BE IS THE\
+\cf5 5434 \cf3 C LONGITUDINAL DERIVATIVE DIVIDED BY SIN(COLATITUDE).\
+\
+5460       DIMENSION   \cf4 DELT(0:LDIM)\cf3 \
+\cf5 5461 \cf3       DIMENSION   BINT(0:KDIM,0:KDIM,1-IBO-JBO:LDIM),\
+\cf5 5462 \cf3      *            \cf4 BEXT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 \
+\
+5512       DO 102 \cf4 I=\cf2 1\cf4 ,KT\cf3 \
+\cf5 5513 \cf3       IF (I .EQ. 1)  THEN\
+\cf5 5514 \cf3          IF (IBF .LE. 1) THEN\
+\cf5 5515 \cf3              DELT(I) = DEL\
+\cf5 5516 \cf3              ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 5517 \cf3              ST = SIN(DEL)\
+\cf5 5518 \cf3              DELT(I) = ST\
+\cf5 5519 \cf3              ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 5520 \cf3              DELT(I) = COS(DEL)\
+\cf5 5521 \cf3              ELSE\
+\cf5 5522 \cf3              DELT(I) = SIN(DEL)\
+\cf5 5523 \cf3              ENDIF\
+5524          GO TO 102\
+5525          ENDIF\
+\cf5 5526 \cf3       IF (IBF .EQ. 0)  THEN\
+\cf5 5527 \cf3           DELT(I) = DELT(I-1)*DEL\
+\cf5 5528 \cf3       ELSE IF (IBF .EQ. 1)  THEN\
+\cf5 5529 \cf3           RECIP = 1./FLOAT(I)\
+\cf5 5530 \cf3           DELT(I) = (2.-RECIP)*DELT(I-1)*DEL - (1.-RECIP)*DELT(I-2)\
+\cf5 5531 \cf3       ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 5532 \cf3            IF ((I/2)*2 .EQ. I)  THEN\
+\cf5 5533 \cf3              IF (I .EQ. 2)  THEN\
+\cf5 5534 \cf3                 CT = COS(DEL)\
+\cf5 5535 \cf3                 DELT(I) = CT\
+\cf5 5536 \cf3                 ELSE\
+\cf5 5537 \cf3                 DELT(I) = \cf4 DELT(\cf2 I-2\cf4 )\cf3 *CT - \cf4 DELT(\cf2 I-3\cf4 )\cf3 *ST\
+\cf5 5538 \cf3                 ENDIF\
+\cf5 5539 \cf3              ELSE\
+\cf5 5540 \cf3              DELT(I) = \cf4 DELT(I-2)\cf3 *CT + DELT(I-1)*ST\
+\cf5 5541 \cf3              ENDIF\
+\cf5 5542 \cf3       ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 5543 \cf3           DELT(I) = COS(I*DEL)\
+\cf5 5544 \cf3       ELSE IF (IBF .EQ. 4)  THEN\
+\cf5 5545 \cf3           DELT(I) = SIN(I*DEL)\
+\cf5 5546 \cf3       ELSE\
+\cf5 5547 \cf3           GO TO 999\
+\cf5 5548 \cf3       ENDIF\
+\cf5 5549 \cf3   102 CONTINUE\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (0 < 1) in loop\'85 [-Wdo-subscript]\cf3 \
+\
+5459       DIMENSION   \cf4 CML(KDIM)\cf3 , \cf4 SML(KDIM)\cf3 \
+\
+5568       DO 150 \cf4 N=\cf2 1\cf4 ,KMAX\cf3 \
+5569       IF (N .GT. 1)  GO TO 115\
+5570       CL = COS(FLON*UMR)\
+5571      SL = SIN(FLON*UMR)\
+5572      CML(1) = CL\
+5573      SML(1) = SL\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 5574 \cf3       GO TO 120\
+\cf5 5575 \cf3   115 SML(N) = SL*\cf4 CML(N-1)\cf3  + CL*\cf4 SML(N-1)\cf3 \
+\cf5 5576 \cf3       CML(N) = CL*\cf4 CML(N-1)\cf3  - SL*\cf4 SML(N-1)\cf3 \
+\cf5 5577 \cf3   120 CONTINUE\
+\cf5 5578 \cf3       DO 150 \cf4 M=\cf2 0\cf4 ,N\cf3 \
+\cf5 5579 \cf3       IF (IB .EQ. 2)  GO TO 121\
+\cf5 5580 \cf3       NMM = N - M\
+\cf5 5581 \cf3       IF ((NMM/2)*2 .NE. NMM)  GO TO 150\
+\cf5 5582 \cf3   121 FFN = FN(N,M)\
+\cf5 5583 \cf3       CALL LEGFUN (M,FFN,CONSTP(N,M),COLAT,P,DP,PMS,0)\
+\cf5 5584 \cf3       IF (L .GE. 0)  THEN\
+\cf5 5585 \cf3          AR = AOR**(FFN+2.)\
+\cf5 5586 \cf3       ELSE\
+\cf5 5587 \cf3          AR = 1.\
+\cf5 5588 \cf3          FFN = -2.\
+\cf5 5589 \cf3          DP = -DP\
+\cf5 5590 \cf3          PMS = -PMS\
+\cf5 5591 \cf3          END IF\
+\cf5 5592 \cf3       IF (M .NE. 0)  GO TO 130\
+\cf5 5593 \cf3       BT1 = 0.\
+\cf5 5594 \cf3       BT3 = 0.\
+\cf5 5595 \cf3       BT  = 0.\
+\cf5 5596 \cf3       IF (L .EQ. 2)  GO TO 123\
+\cf5 5597 \cf3       IF (N .GT. KINT)  GO TO 123\
+\cf5 5598 \cf3       GTI = 0.\
+\cf5 5599 \cf3       DO 122 I=1-IBO-JBO,LINT\
+\cf5 5600 \cf3   122 GTI  = GTI  + BINT(N,M,I)*DELT(I)\
+\cf5 5601 \cf3       BT1  = AR*GTI\
+\cf5 5602 \cf3       BT3  = BT1\
+\cf5 5603 \cf3   123 IF (L .LE. 1)  GO TO 125\
+\cf5 5604 \cf3       IF (N .GT. KEXT)  GO TO 125\
+\cf5 5605 \cf3       GTE = 0.\
+\cf5 5606 \cf3       DO 124 I=1-IBO-JBO,LEXT\
+\cf5 5607 \cf3   124 GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 5608 \cf3       BT  = AOR3/AR*GTE\
+\cf5 5609 \cf3       BT1 = BT1 + BT\
+\cf5 5610 \cf3   125 X = X + BT1*DP\
+\cf5 5611 \cf3       Z = Z - (FFN*(BT3-BT)+BT3)*P\
+\cf5 5612 \cf3       GO TO 150\
+\cf5 5613 \cf3   130 BT1 = 0.\
+\cf5 5614 \cf3       BT2 = 0.\
+\cf5 5615 \cf3       BT3 = 0.\
+\cf5 5616 \cf3       BT  = 0.\
+\cf5 5617 \cf3       IF (L .EQ. 2)  GO TO 133\
+\cf5 5618 \cf3       IF (N .GT. KINT)  GO TO 133\
+\cf5 5619 \cf3       GTI = 0.\
+\cf5 5620 \cf3       HTI = 0.\
+\cf5 5621 \cf3       DO 132 I=1-IBO-JBO,LINT\
+\cf5 5622 \cf3       GTI = GTI + BINT(N,M,I)*DELT(I)\
+\cf5 5623  \cf3  132 HTI = HTI + \cf4 BINT(\cf2 M-1\cf4 ,N,I)\cf3 *DELT(I)\
+\cf5 5624 \cf3       BT1 = AR*(GTI*\cf4 CML(M)\cf3  + HTI*\cf4 SML(M)\cf3 )\
+\cf5 5625 \cf3       BT2 = AR*(GTI*\cf4 SML(M)\cf3  - HTI*\cf4 CML(M)\cf3 )\
+\cf5 5626 \cf3       BT3 = BT1\
+\cf5 5627 \cf3   133 IF (L .LE. 1)  GO TO 135\
+\cf5 5628 \cf3       IF (N .GT. KEXT)  GO TO 135\
+\cf5 5629 \cf3       GTE = 0.\
+\cf5 5630 \cf3       HTE = 0.\
+\cf5 5631 \cf3       DO 134 I=1-IBO-JBO,LEXT\
+\cf5 5632 \cf3       GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 5633 \cf3   134 HTE = HTE + \cf4 BEXT(\cf2 M-1\cf4 ,N,I)\cf3 *DELT(I)\
+\cf5 5634 \cf3       RA = AOR3/AR\
+\cf5 5635 \cf3       BT = RA*(GTE*\cf4 CML(M)\cf3  + HTE*\cf4 SML(M)\cf3 )\
+\cf5 5636 \cf3       BT1 = BT1 + BT\
+\cf5 5637 \cf3       BT2 = BT2 + RA*(GTE*SML(M) - HTE*CML(M))\
+\cf5 5638 \cf3   135 X = X + BT1*DP\
+\cf5 5639 \cf3       Y = Y + BT2*PMS\
+5640      Z = Z - (FFN*(BT3-BT)+BT3)*P\
+5641   150 CONTINUE\
+\
+6782 	DO 500 N=0,KMAX\
+\cf5 6783 \cf3 	DO 500 \cf4 M=0,N\cf3 \
+\cf5 6784 \cf3 \
+\cf5 6785 \cf3 	DO J=0,KT\
+\cf5 6786 \cf3 	 GNM(N,M,J)=GANM(N,M,J)+GBNM(N,M,J)*rz\
+\cf5 6787 \cf3 	 HNM(N,M,J)=HANM(N,M,J)+HBNM(N,M,J)*rz\
+\cf5 6788 \cf3 	ENDDO\
+\cf5 6789 \cf3  \
+\cf5 6790 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 6791 \cf3          IF (N .GT. KINT)  GO TO 500\
+\cf5 6792 \cf3          LJ = LINT\
+\cf5 6793 \cf3       ELSE\
+\cf5 6794 \cf3          IF (N .GT. KEXT)  GO TO 500\
+\cf5 6795 \cf3          LJ = LEXT\
+\cf5 6796 \cf3          END IF\
+\cf5 6797 \cf3 \
+\cf5 6798 \cf3       FN(N,M) = FLOAT(N)\
+\cf5 6799 \cf3 \
+\cf5 6800 \cf3       IF (M .GT. 0)  GO TO 300\
+\cf5 6801 \cf3       DO 301 J=1-IBO-JBO,KT\
+\cf5 6802 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 6803 \cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 6804 \cf3       ELSE\
+\cf5 6805 \cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 6806 \cf3          END IF\
+\cf5 6807 \cf3   301 CONTINUE\
+\cf5 6808 \cf3       GO TO 500\
+\cf5 6809 \cf3   300 continue\
+\cf5 6810 \cf3       DO 302 J=1-IBO-JBO,LJ\
+\cf5 6811 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 6812 \cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 6813 \cf3          \cf4 BINT(\cf2 M-1\cf4 ,N,J)\cf3  = HNM(N,M,J)\
+\cf5 6814 \cf3       ELSE\
+\cf5 6815 \cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 6816 \cf3          \cf4 BEXT(\cf2 M-1\cf4 ,N,J\cf3 ) = HNM(N,M,J)\
+\cf5 6817 \cf3          END IF\
+\cf5 6818 \cf3   302 CONTINUE\
+\cf5 6719 \cf3 C\
+\cf5 6820 \cf3   500 CONTINUE\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (-1 < 0) in loop\'85 [-Wdo-subscript]\
+\cf3 \
+6830       SUBROUTINE SCHNEVPD (RZ,FLAT,FLON,R,T,L,BN,BE,BV)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 6831 \cf3 C-------------------------------------------------------------------\
+\cf5 6832 \cf3 C     WHEN L IS POSITIVE:\
+\cf5 6833 \cf3 C     COMPUTES SPHERICAL CAP HARMONIC (GEOCENTRIC) FIELD COMPONENTS\
+\cf5 6834 \cf3 C     HORIZONTAL NORTH BN,HORIZONTAL EAST BE,AND VERTICAL DOWNWARD BV.\
+\cf5 6835 \cf3 C     WHEN L IS NEGATIVE:\
+\cf5 6836 \cf3 C     COMPUTES GENERAL FUNCTION BV, ITS HORIZONTAL NORTH DERIVATIVE BN,\
+\cf5 6837 \cf3 C     AND ITS HORIZONTAL EAST DERIVATIVE BE, ON SPHERICAL CAP SURFACE.\
+\cf5 6838 \cf3 C     NOTE THAT THESE ARE METRICAL DERIVATIVES, AND BE IS THE\
+\cf5 6839 \cf3 C     LONGITUDINAL DERIVATIVE DIVIDED BY SIN(COLATITUDE).\
+\
+6865       DIMENSION   CML(KDIM), SML(KDIM)\
+\cf5 6866 \cf3       DIMENSION   \cf4 DELT(\cf2 0\cf4 :LDIM)\cf3 \
+\cf5 6867 \cf3       DIMENSION   BINT(0:KDIM,0:KDIM,1-IBO-JBO:LDIM),\
+\cf5 6868 \cf3      *            BEXT(0:KDIM,0:KDIM,1-IBO-JBO:LDIM)\
+\
+6916       DO 102 \cf4 I=1,KT\cf3 \
+\cf5 6917 \cf3       IF (I .EQ. 1)  THEN\
+\cf5 6918 \cf3          IF (IBF .LE. 1) THEN\
+\cf5 6919 \cf3              DELT(I) = DEL\
+\cf5 6920 \cf3              ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 6921 \cf3              ST = SIN(DEL)\
+\cf5 6922 \cf3              DELT(I) = ST\
+\cf5 6923 \cf3              ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 6924 \cf3              DELT(I) = COS(DEL)\
+\cf5 6925 \cf3              ELSE\
+\cf5 6926 \cf3              DELT(I) = SIN(DEL)\
+\cf5 6927 \cf3              ENDIF\
+\cf5 6928 \cf3          GO TO 102\
+\cf5 6929 \cf3          ENDIF\
+\cf5 6930 \cf3       IF (IBF .EQ. 0)  THEN\
+\cf5 6931 \cf3           DELT(I) = \cf4 DELT(I-1)\cf3 *DEL\
+\cf5 6932 \cf3       ELSE IF (IBF .EQ. 1)  THEN\
+\cf5 6933 \cf3           RECIP = 1./FLOAT(I)\
+\cf5 6934 \cf3           DELT(I) = (2.-RECIP)*\cf4 DELT(I-1)\cf3 *DEL - (1.-RECIP)*\cf4 DELT(I-2\cf3 )\
+\cf5 6935 \cf3       ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 6936 \cf3            IF ((I/2)*2 .EQ. I)  THEN\
+\cf5 6937 \cf3              IF (I .EQ. 2)  THEN\
+\cf5 6938 \cf3                 CT = COS(DEL)\
+\cf5 6939 \cf3                 DELT(I) = CT\
+\cf5 6940 \cf3                 ELSE\
+\cf5 6941 \cf3                 DELT(I) = \cf4 DELT(I-2)\cf3 *CT - \cf4 DELT(I-3)\cf3 *ST\
+\cf5 6942 \cf3                 ENDIF\
+\cf5 6943 \cf3              ELSE\
+\cf5 6944 \cf3              DELT(I) = \cf4 DELT(I-2)\cf3 *CT + \cf4 DELT(I-1)\cf3 *ST\
+\cf5 6945 \cf3              ENDIF\
+\cf5 6946 \cf3       ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 6947 \cf3           DELT(I) = COS(I*DEL)\
+\cf5 6948 \cf3       ELSE IF (IBF .EQ. 4)  THEN\
+\cf5 6949 \cf3           DELT(I) = SIN(I*DEL)\
+\cf5 6950 \cf3       ELSE\
+\cf5 6951 \cf3           GO TO 999\
+\cf5 6952 \cf3       ENDIF\
+\cf5 6953 \cf3   102 CONTINUE	\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (0 < 1) in loop\'85 [-Wdo-subscript]\cf3 \
+\
+6830       SUBROUTINE SCHNEVPD (RZ,FLAT,FLON,R,T,L,BN,BE,BV)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 6831 \cf3 C-------------------------------------------------------------------\
+\cf5 6832 \cf3 C     WHEN L IS POSITIVE:\
+\cf5 6833 \cf3 C     COMPUTES SPHERICAL CAP HARMONIC (GEOCENTRIC) FIELD COMPONENTS\
+\cf5 6834 \cf3 C     HORIZONTAL NORTH BN,HORIZONTAL EAST BE,AND VERTICAL DOWNWARD BV.\
+\cf5 6835 \cf3 C     WHEN L IS NEGATIVE:\
+\cf5 6836 \cf3 C     COMPUTES GENERAL FUNCTION BV, ITS HORIZONTAL NORTH DERIVATIVE BN,\
+\cf5 6837 \cf3 C     AND ITS HORIZONTAL EAST DERIVATIVE BE, ON SPHERICAL CAP SURFACE.\
+\cf5 6838 \cf3 C     NOTE THAT THESE ARE METRICAL DERIVATIVES, AND BE IS THE\
+\cf5 6839 \cf3 C     LONGITUDINAL DERIVATIVE DIVIDED BY SIN(COLATITUDE).\
+\
+6865       DIMENSION   \cf4 CML(KDIM)\cf3 , \cf4 SML(KDIM)\cf3 \
+6866       DIMENSION   \cf4 DELT(\cf2 0\cf4 :LDIM)\cf3 \
+6867       DIMENSION   \cf4 BINT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 ,\
+6868      *            \cf4 BEXT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 \
+\
+6972       DO 150 \cf4 N=\cf2 1\cf4 ,KMAX\cf3 \
+\cf5 6973 \cf3       IF (N .GT. 1)  GO TO 115\
+\cf5 6974 \cf3       CL = COS(FLON*dfarg)\
+\cf5 6975 \cf3       SL = SIN(FLON*dfarg)\
+\cf5 6976 \cf3       CML(1) = CL\
+\cf5 6977 \cf3       SML(1) = SL\
+\cf5 6978 \cf3       GO TO 120\
+\cf5 6979 \cf3   115 SML(N) = SL*\cf4 CML(N-1)\cf3  + CL*\cf4 SML(N-1)\cf3 \
+\cf5 6980 \cf3       CML(N) = CL*\cf4 CML(N-1)\cf3  - SL*\cf4 SML(N-1)\cf3 \
+\cf5 6981 \cf3   120 CONTINUE\
+6982      DO 150 \cf4 M=0,N\cf3 \
+\cf5 6983 \cf3       IF (IB .EQ. 2)  GO TO 121\
+\cf5 6984 \cf3       NMM = N - M\
+\cf5 6985 \cf3       IF ((NMM/2)*2 .NE. NMM)  GO TO 150\
+\cf5 6986 \cf3   121 FFN = FN(N,M)\
+\cf5 6987 \cf3       CALL LEGFUN (M,FFN,CONSTP(N,M),COLAT,P,DP,PMS,0)\
+\cf5 6988 \cf3       IF (L .GE. 0)  THEN\
+\cf5 6989 \cf3          AR = AOR**(FFN+2.)\
+\cf5 6990 \cf3       ELSE\
+\cf5 6991 \cf3          AR = 1.\
+\cf5 6992 \cf3          FFN = -2.\
+\cf5 6993 \cf3          DP = -DP\
+\cf5 6994 \cf3          PMS = -PMS\
+\cf5 6995 \cf3          END IF\
+\cf5 6996 \cf3       IF (M .NE. 0)  GO TO 130\
+\cf5 6997 \cf3       BT1 = 0.\
+\cf5 6998 \cf3       BT3 = 0.\
+\cf5 6999 \cf3       BT  = 0.\
+\cf5 7000 \cf3       IF (L .EQ. 2)  GO TO 123\
+\cf5 7001 \cf3       IF (N .GT. KINT)  GO TO 123\
+\cf5 7002 \cf3       GTI = 0.\
+\cf5 7003 \cf3       DO 122 I=1-IBO-JBO,LINT\
+\cf5 7004 \cf3   122 GTI  = GTI  + BINT(N,M,I)*DELT(I)\
+\cf5 7005 \cf3       BT1  = AR*GTI\
+\cf5 7006 \cf3       BT3  = BT1\
+\cf5 7007 \cf3   123 IF (L .LE. 1)  GO TO 125\
+\cf5 7008 \cf3       IF (N .GT. KEXT)  GO TO 125\
+\cf5 7009 \cf3       GTE = 0.\
+\cf5 7010 \cf3       DO 124 I=1-IBO-JBO,LEXT\
+\cf5 7011 \cf3   124 GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 7012 \cf3       BT  = AOR3/AR*GTE\
+\cf5 7013 \cf3       BT1 = BT1 + BT\
+\cf5 7014 \cf3   125 X = X + BT1*DP\
+\cf5 7015 \cf3       Z = Z - (FFN*(BT3-BT)+BT3)*P\
+\cf5 7016 \cf3       GO TO 150\
+\cf5 7017 \cf3   130 BT1 = 0.\
+\cf5 7018 \cf3       BT2 = 0.\
+\cf5 7019 \cf3       BT3 = 0.\
+\cf5 7020 \cf3       BT  = 0.\
+\cf5 7021 \cf3       IF (L .EQ. 2)  GO TO 133\
+\cf5 7022 \cf3       IF (N .GT. KINT)  GO TO 133\
+\cf5 7023 \cf3       GTI = 0.\
+\cf5 7024 \cf3       HTI = 0.\
+\cf5 7025 \cf3       DO 132 I=1-IBO-JBO,LINT\
+\cf5 7026 \cf3       GTI = GTI + BINT(N,M,I)*DELT(I)\
+\cf5 7027 \cf3   132 HTI = HTI + \cf4 BINT(\cf2 M-1\cf4 ,N,I)\cf3 *DELT(I)\
+\cf5 7028 \cf3       BT1 = AR*(GTI*\cf4 CML(M)\cf3  + HTI*\cf4 SML(M)\cf3 )\
+\cf5 7029 \cf3       BT2 = AR*(GTI*\cf4 SML(M)\cf3  - HTI*\cf4 CML(M)\cf3 )\
+\cf5 7030 \cf3       BT3 = BT1\
+\cf5 7031 \cf3   133 IF (L .LE. 1)  GO TO 135\
+\cf5 7032 \cf3       IF (N .GT. KEXT)  GO TO 135\
+\cf5 7033 \cf3       GTE = 0.\
+\cf5 7034 \cf3       HTE = 0.\
+\cf5 7035 \cf3       DO 134 I=1-IBO-JBO,LEXT\
+\cf5 7036 \cf3       GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 7037 \cf3   134 HTE = HTE + \cf4 BEXT(\cf2 M-1\cf4 ,N,I)\cf3 *DELT(I)\
+\cf5 7038 \cf3      RA = AOR3/AR\
+\cf5 7039 \cf3       BT = RA*(GTE*\cf4 CML(M)\cf3  + HTE*\cf4 SML(M)\cf3 )\
+\cf5 7040 \cf3       BT1 = BT1 + BT\
+\cf5 7041 \cf3       BT2 = BT2 + RA*(GTE*\cf4 SML(M)\cf3  - HTE*\cf4 CML(M)\cf3 )\
+\cf5 7042 \cf3   135 X = X + BT1*DP\
+\cf5 7043 \cf3       Y = Y + BT2*PMS\
+\cf5 7044 \cf3       Z = Z - (FFN*(BT3-BT)+BT3)*P\
+\cf5 7045 \cf3   150 CONTINUE\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (0 < 1) in loop\'85 [-Wdo-subscript]\cf3 \
+\
+7054       SUBROUTINE  SHAB1D (FLAT,FLON,T,RZ,B)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 7055 \cf3 C-------------------------------------------------------------------\
+\cf5 7056 \cf3 C	COMPUTES THE HOURLY VALUES OF B1 FROM A SET OF SH COEFFICIENTS\
+\cf5 7057 \cf3 C	IN A POINT OF A GIVEN GEOCENTRIC LATITUDE AND LONGITUDE\
+\cf5 7058 \cf3 C	OF THE EARTH'S SURFACE FOR A GIVEN MONTH AND A GIVEN SUSPOT NUMER\
+\
+7075       DIMENSION   \cf4 BINT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 ,\
+\cf5 7076 \cf3      *            \cf4 BEXT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 \
+\
+\
+7160 	DO 500 N=0,KMAX\
+\cf5 7161 \cf3 	DO 500 M=0,N\
+\cf5 7162 \cf3 \
+\cf5 7163 \cf3 	DO J=0,KT\
+\cf5 7164 \cf3 	 GNM(N,M,J)=GANM(N,M,J)+GBNM(N,M,J)*rz\
+\cf5 7165 \cf3 	 HNM(N,M,J)=HANM(N,M,J)+HBNM(N,M,J)*rz\
+\cf5 7166 \cf3 	ENDDO\
+\cf5 7167 \cf3  \
+\cf5 7168 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 7169 \cf3          IF (N .GT. KINT)  GO TO 500\
+\cf5 7170 \cf3          LJ = LINT\
+\cf5 7171 \cf3       ELSE\
+\cf5 7172 \cf3          IF (N .GT. KEXT)  GO TO 500\
+\cf5 7173 \cf3          LJ = LEXT\
+\cf5 7174 \cf3          END IF\
+\cf5 7175 \cf3 \
+\cf5 7176 \cf3       FN(N,M) = FLOAT(N)\
+\cf5 7177 \cf3 \
+\cf5 7178 \cf3       IF (M .GT. 0)  GO TO 300\
+\cf5 7179 \cf3   255 FORMAT (1X,A1,2I3,F9.4,E15.6,F10.3,4F20.3:/(22X,5F20.3))\
+\cf5 7180 \cf3       DO 301 J=1-IBO-JBO,KT\
+\cf5 7181 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 7182 \cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 7183 \cf3       ELSE\
+\cf5 7184 \cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 7185 \cf3         END IF\
+\cf5 7186 \cf3   301 CONTINUE\
+\cf5 7187 \cf3       GO TO 500\
+\cf5 7188 \cf3   300 continue\
+\cf5 7189 \cf3   260 FORMAT (1X,A1,2I3,F9.4,E15.6,10F10.3:/(32X,10F10.3))\
+\cf5 7190 \cf3       DO 302 J=1-IBO-JBO,LJ\
+\cf5 7191 \cf3       IF (IE .EQ. 'I')  THEN\
+\cf5 7192 \cf3          BINT(N,M,J)   = GNM(N,M,J)\
+\cf5 7193 \cf3          \cf4 BINT(\cf2 M-1\cf4 ,N,J)\cf3  = HNM(N,M,J)\
+\cf5 7194 \cf3       ELSE\
+\cf5 7195 \cf3          BEXT(N,M,J)   = GNM(N,M,J)\
+\cf5 7196 \cf3          \cf4 BEXT(\cf2 M-1\cf4 ,N,J)\cf3  = HNM(N,M,J)\
+\cf5 7197 \cf3          END IF\
+\cf5 7198 \cf3   302 CONTINUE\
+\cf5 7199 \cf3 \
+\cf5 7200 \cf3   500 CONTINUE\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 Warning: Array reference \'85 out of bounds (-2 < 0) in loop\'85 [-Wdo-subscript]\cf3 \
+\
+7211       SUBROUTINE SCHNEVPDB1 (RZ,FLAT,FLON,R,T,L,BN,BE,BV)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 7212 \cf3 C-------------------------------------------------------------------\
+\cf5 7213 \cf3 C     WHEN L IS POSITIVE:\
+\cf5 7214 \cf3 C     COMPUTES SPHERICAL CAP HARMONIC (GEOCENTRIC) FIELD COMPONENTS\
+\cf5 7215 \cf3 C     HORIZONTAL NORTH BN,HORIZONTAL EAST BE,AND VERTICAL DOWNWARD BV.\
+\cf5 7216 \cf3 C     WHEN L IS NEGATIVE:\
+\cf5 7217 \cf3 C     COMPUTES GENERAL FUNCTION BV, ITS HORIZONTAL NORTH DERIVATIVE BN,\
+\cf5 7218 \cf3 C     AND ITS HORIZONTAL EAST DERIVATIVE BE, ON SPHERICAL CAP SURFACE.\
+\cf5 7219 \cf3 C     NOTE THAT THESE ARE METRICAL DERIVATIVES, AND BE IS THE\
+\cf5 7220 \cf3 C     LONGITUDINAL DERIVATIVE DIVIDED BY SIN(COLATITUDE).\
+\
+7246       DIMENSION   \cf4 CML(KDIM)\cf3 , \cf4 SML(KDIM)\cf3 \
+7247       DIMENSION   \cf4 DELT(0:LDIM)\cf3 \
+\cf5 7248 \cf3       DIMENSION   BINT(0:KDIM,0:KDIM,1-IBO-JBO:LDIM),\
+\cf5 7249 \cf3      *            \cf4 BEXT(\cf2 0\cf4 :KDIM,0:KDIM,1-IBO-JBO:LDIM)\cf3 \
+\
+7297      DO 102 \cf4 I=1,KT\cf3 \
+\cf5 7298 \cf3       IF (I .EQ. 1)  THEN\
+\cf5 7299 \cf3          IF (IBF .LE. 1) THEN\
+\cf5 7300 \cf3              DELT(I) = DEL\
+\cf5 7301 \cf3              ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 7302 \cf3              ST = SIN(DEL)\
+\cf5 7303 \cf3              DELT(I) = ST\
+\cf5 7304 \cf3              ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 7305 \cf3              DELT(I) = COS(DEL)\
+\cf5 7306 \cf3              ELSE\
+\cf5 7307 \cf3              DELT(I) = SIN(DEL)\
+\cf5 7308 \cf3              ENDIF\
+\cf5 7309 \cf3          GO TO 102\
+\cf5 7310 \cf3          ENDIF\
+\cf5 7311 \cf3       IF (IBF .EQ. 0)  THEN\
+\cf5 7312 \cf3           DELT(I) = \cf4 DELT(I-1)\cf3 *DEL\
+\cf5 7313 \cf3       ELSE IF (IBF .EQ. 1)  THEN\
+\cf5 7314 \cf3           RECIP = 1./FLOAT(I)\
+\cf5 7315 \cf3           DELT(I) = (2.-RECIP)*DELT(I-1)*DEL - (1.-RECIP)*DELT(I-2)\
+\cf5 7316 \cf3       ELSE IF (IBF .EQ. 2)  THEN\
+\cf5 7317 \cf3            IF ((I/2)*2 .EQ. I)  THEN\
+\cf5 7318 \cf3              IF (I .EQ. 2)  THEN\
+\cf5 7319 \cf3                 CT = COS(DEL)\
+\cf5 7320 \cf3                 DELT(I) = CT\
+\cf5 7321 \cf3                 ELSE\
+\cf5 7322 \cf3                 DELT(I) = \cf4 DELT(I-2)\cf3 *CT - \cf4 DELT(I-3)\cf3 *ST\
+\cf5 7323 \cf3                 ENDIF\
+\cf5 7324 \cf3              ELSE\
+\cf5 7325 \cf3              DELT(I) = \cf4 DELT(I-2)\cf3 *CT + \cf4 DELT(I-1)\cf3 *ST\
+\cf5 7326 \cf3              ENDIF\
+\cf5 7327 \cf3       ELSE IF (IBF .EQ. 3)  THEN\
+\cf5 7328 \cf3           DELT(I) = COS(I*DEL)\
+\cf5 7329 \cf3       ELSE IF (IBF .EQ. 4)  THEN\
+\cf5 7330 \cf3           DELT(I) = SIN(I*DEL)\
+\cf5 7331 \cf3       ELSE\
+\cf5 7332 \cf3           GO TO 999\
+\cf5 7333 \cf3       ENDIF\
+\cf5 7334 \cf3   102 CONTINUE\
+\
+7353       DO 150 \cf4 N=\cf2 1\cf4 ,KMAX\cf3 \
+\cf5 7354 \cf3       IF (N .GT. 1)  GO TO 115\
+\cf5 7355 \cf3       CL = COS(FLON*dfarg)\
+\cf5 7356 \cf3       SL = SIN(FLON*dfarg)\
+\cf5 7357 \cf3       CML(1) = CL\
+\cf5 7358 \cf3       SML(1) = SL\
+\cf5 7359 \cf3       GO TO 120\
+\cf5 7360 \cf3   115 SML(N) = SL*\cf4 CML(N-1)\cf3  + CL*\cf4 SML(N-1)\cf3 \
+\cf5 7361 \cf3       CML(N) = CL*\cf4 CML(N-1)\cf3  - SL*\cf4 SML(N-1)\cf3 \
+\cf5 7362 \cf3   120 CONTINUE\
+\cf5 7363 \cf3       DO 150 \cf4 M=\cf2 0\cf4 ,N\cf3 \
+\cf5 7364 \cf3       IF (IB .EQ. 2)  GO TO 121\
+\cf5 7365 \cf3       NMM = N - M\
+\cf5 7366 \cf3       IF ((NMM/2)*2 .NE. NMM)  GO TO 150\
+\cf5 7367 \cf3   121 FFN = FN(N,M)\
+\cf5 7368 \cf3       CALL LEGFUN (M,FFN,CONSTP(N,M),COLAT,P,DP,PMS,0)\
+\cf5 7369 \cf3       IF (L .GE. 0)  THEN\
+\cf5 7370 \cf3          AR = AOR**(FFN+2.)\
+\cf5 7371 \cf3       ELSE\
+\cf5 7372 \cf3          AR = 1.\
+\cf5 7373 \cf3          FFN = -2.\
+\cf5 7374 \cf3          DP = -DP\
+\cf5 7375 \cf3          PMS = -PMS\
+\cf5 7376 \cf3          END IF\
+\cf5 7377 \cf3       IF (M .NE. 0)  GO TO 130\
+\cf5 7378 \cf3       BT1 = 0.\
+\cf5 7379 \cf3       BT3 = 0.\
+\cf5 7380 \cf3       BT  = 0.\
+\cf5 7381 \cf3       IF (L .EQ. 2)  GO TO 123\
+\cf5 7382 \cf3       IF (N .GT. KINT)  GO TO 123\
+\cf5 7383 \cf3       GTI = 0.\
+\cf5 7384 \cf3       DO 122 I=1-IBO-JBO,LINT\
+\cf5 7385 \cf3   122 GTI  = GTI  + BINT(N,M,I)*DELT(I)\
+\cf5 7386 \cf3       BT1  = AR*GTI\
+\cf5 7387 \cf3       BT3  = BT1\
+7388   123 IF (L .LE. 1)  GO TO 125\
+\cf5 7389 \cf3       IF (N .GT. KEXT)  GO TO 125\
+\cf5 7390 \cf3       GTE = 0.\
+\cf5 7391 \cf3       DO 124 I=1-IBO-JBO,LEXT\
+\cf5 7392 \cf3   124 GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 7393 \cf3       BT  = AOR3/AR*GTE\
+\cf5 7394 \cf3       BT1 = BT1 + BT\
+\cf5 7395 \cf3   125 X = X + BT1*DP\
+\cf5 7396 \cf3       Z = Z - (FFN*(BT3-BT)+BT3)*P\
+\cf5 7397 \cf3       GO TO 150\
+\cf5 7398 \cf3   130 BT1 = 0.\
+\cf5 7399 \cf3       BT2 = 0.\
+\cf5 7400 \cf3       BT3 = 0.\
+\cf5 7401 \cf3       BT  = 0.\
+\cf5 7402 \cf3       IF (L .EQ. 2)  GO TO 133\
+\cf5 7403 \cf3       IF (N .GT. KINT)  GO TO 133\
+\cf5 7404 \cf3       GTI = 0.\
+\cf5 7405 \cf3       HTI = 0.\
+\cf5 7406 \cf3       DO 132 I=1-IBO-JBO,LINT\
+\cf5 7407 \cf3       GTI = GTI + BINT(N,M,I)*DELT(I)\
+\cf5 7408 \cf3   132 HTI = HTI + \cf4 BINT(\cf2 M-1\cf4 ,N,I\cf3 )*DELT(I)\
+\cf5 7409 \cf3       BT1 = AR*(GTI*\cf4 CML(M)\cf3  + HTI*\cf4 SML(M)\cf3 )\
+\cf5 7410 \cf3       BT2 = AR*(GTI*\cf4 SML(M)\cf3  - HTI*\cf4 CML(M)\cf3 )\
+\cf5 7411 \cf3       BT3 = BT1\
+\cf5 7412 \cf3   133 IF (L .LE. 1)  GO TO 135\
+\cf5 7413 \cf3       IF (N .GT. KEXT)  GO TO 135\
+\cf5 7414 \cf3       GTE = 0.\
+\cf5 7415 \cf3       HTE = 0.\
+\cf5 7416 \cf3       DO 134 I=1-IBO-JBO,LEXT\
+\cf5 7417 \cf3       GTE = GTE + BEXT(N,M,I)*DELT(I)\
+\cf5 7418 \cf3   134 HTE = HTE + \cf4 BEXT(\cf2 M-1\cf4 ,N,I)\cf3 *DELT(I)\
+\cf5 7419 \cf3       RA = AOR3/AR\
+\cf5 7420 \cf3       BT = RA*(GTE*\cf4 CML(M)\cf3  + HTE*\cf4 SML(M)\cf3 )\
+\cf5 7421 \cf3       BT1 = BT1 + BT\
+\cf5 7422 \cf3       BT2 = BT2 + RA*(GTE*\cf4 SML(M)\cf3  - HTE*\cf4 CML(M)\cf3 )\
+\cf5 7423 \cf3   135 X = X + BT1*DP\
+\cf5 7424 \cf3       Y = Y + BT2*PMS\
+\cf5 7425 \cf3       Z = Z - (FFN*(BT3-BT)+BT3)*P\
+7426   150 CONTINUE}

@@ -1,0 +1,17 @@
+Jonathan White
+
+9:42 PM (4 minutes ago)
+
+to me, Eric
+Sorry for the delay. Here's what I did in April:
+
+    Found that bug in adaptive step size JS ray tracer was due to the way JS handles passing of arguments
+        Need to ensure that Objects containing Objects are deep copied, so that data isn't altered when it shouldn't be.
+    Was not able to eliminate differences between JS and C ray tracers; JS returns different values for same input of transcendental functions
+    Did confirm that JS adaptive-step ray tracer returned same output as fixed-step ray tracer when step adjustment was turned off.
+    Ran performance tests on 2nd-order Leapfrog and 4th-order Runge-Kutta with fixed and adaptive step sizes
+        The 4th-order method does not provide a performance benefit at our desired accuracy requirement.
+        The adaptive-step method does not provide a performance benefit over fixed-step method
+    Wrote class to read JSON file for Ionosphere grid and perform trilinear interpolation between grid points
+        JS ray tracer with trilinear interpolation is between 3-4 times slower than using Chapman function.
+        This is a smaller loss of performance than anticipated; no need to try to improve performance beyond current capability.

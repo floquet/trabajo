@@ -1,0 +1,30 @@
+Size of the Sciacca AirFrame
+
+Fuselage length (x): 44.5 m
+Wingspan        (y): 41.8 m
+Height          (z):  6.096 m
+
+The height is the same as the fuselage diameter.
+
+Details:
+The CAD model maintains a list of dimensionless vertex points which are passed to CAD with a declaration of units.
+
+Here is the command to interrogate the list of all 345 points:
+extents = (Max[#] - Min[#]) & /@ {x, y, z}
+{44500., 41800., 6096.}
+
+The file PTW.geo contains the unit specifications. In line 78 we find "mm"
+
+ 76 SIE
+ 77 PTW.facet
+ 78 mm
+ 77
+ 79 Geometry_End
+
+In response to a previous interchange, note that Joe leaves the radar frequency units in GHz (lines 54-44):
+
+ 53 FREQUENCY
+ 54   ghz
+ 55   0.003000  0.030000  28   !Freq Start, Freq Stop, Number of Frequencies
+
+Dan

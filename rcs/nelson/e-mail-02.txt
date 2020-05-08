@@ -1,0 +1,41 @@
+Dan,
+
+ 
+
+I appreciate your detail provided in the report.  This report should continue to be expanded as we learn more about the RCS implementation approach.  I like the summation which represents your earlier desire for working in the Fourier domain.  The Fourier domain out performs the Taylor in capturing the overall structure with less coefficients necessary to represent the RCS features in azimuth.  The frequency dependent function (Taylor) has multiple compromises  applied which introduce greater errors in both frequency and azimuth.  Using the frequency dependent function would result in a significant increase in coefficients, since the granularity in azimuth would need to be finer.  I’ve restated your Table 13 in a chart below for the finest azimuth frequency dependent, which further states your assertion for the azimuth dependent Fourier approach.
+
+ 
+
+
+
+ 
+
+Revising the table above for a decimated azimuth using averaging in azimuth:
+
+ 
+
+
+
+ 
+
+The chart above shows with the decrease in accuracy (residual error in RCS increased, report figure 8) the number of coefficients are equivalent. 
+
+ 
+
+The remaining concern is the computational load at the browser.  I suspect leveraging the storage of cosine results can resolve the problem to just multiplies.  The Taylor approach is just a sequence of multiplies too. 
+
+ 
+
+One final agreement with your Fourier azimuth dependent approach is the analysis of the frequency dependent has shown the closest frequency provides a reduced error when compared to fitting to the frequency domain with a Taylor.   This should be captured in the report.  Demonstrating the azimuth dependent results versus the frequency dependent as a difference spectrogram will show the advantage of using azimuth dependent.  You can demonstrate the frequency domain using an average of 5 degrees.  This shows an increase in coefficients by more than 2 and still not retaining the resolution of the MOM data.
+
+ 
+
+You’ll also notice I’ve asked for multiple elevations (5 – 45 degree at 5 degree resolution).   I’d like to see the current 30 degree data produced (your Fourier azimuth dependent) into a table for testing a few JS routines.
+
+ 
+
+Thanks
+
+Nelson
+
+ 

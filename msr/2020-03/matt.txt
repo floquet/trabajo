@@ -1,0 +1,18 @@
+What I Did:
+Converted QPS C code into JavaScript with unit test showcasing same output and confidence in complete conversion
+Converted Homing algorithm with stubbed out ray tracer functionality
+Ironed out 11 parameter JSON suite with approval on units and display order and metadata
+Created 3D Fan Grid for Ionosphere interpolation
+Created new JSON object containing 3D Fan Grid for ray tracer to use
+Signed up for DI2E onboarding and account creation
+Fixed bugs and added recommendation on coefficient grid dashboard per Nelson's request - This helps test the 11 paramater JSON
+
+Challenges:
+Slow JSON generation creates a slow turnaround for approval and completion
+Email communication also creates slow turnaround for fixes / updates
+Converting C test code output to be useful in JavaScript unit tests
+
+Next month challenges:
+Convert entirety of homing algorithm with unit test
+Complete cloud placement algorithm working with Trevor
+Implement cloud placement in dashboard

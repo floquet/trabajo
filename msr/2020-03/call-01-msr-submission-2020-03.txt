@@ -1,0 +1,28 @@
+Call 01 Monthly Status Report
+April 2020
+
+Call-01 Radar Cross Section
+
+    Finalized and delivered finite difference analysis of a new differencing scheme by Dan Ober to suppress velocity spikes. (finite-difference-algebra.pdf)
+    Demonstrated ability to run new CAD models in Mercury MoM (B-20 Bonito, a B-52 surrogate)
+    Apr 13: delivered to peers
+        slide deck: hg-mom-01.pdf (draft) Mercury Method of Moments: AFRL Quick Start Guide
+    Apr 15: delivered to Nelson
+        slide deck: quo-vadis-01.pdf (draft) email and online presentation
+        slide deck: mesh-lessons-01.pdf
+        report: mmviz.pdf Report on using MMViz and possible alternative applications
+    Apr 20: delivered to Nelson
+        report: phase-1-summary-01 Radar Cross Section: Phase 1 Summary Report
+        animation sequence: RCS as function of radar frequency - accumulation of RCS profiles 3-30 MHz, and 30-3 MHz
+        animation sequence: RCS as a function of yaw angle - shows profiles for azimuth sweep (-pi, pi)
+    Apr 21: delivered to peers
+        memo detailing how the MoM sampling mesh destroys the orthogonality of the trigonometric functions
+    Apr 29: delivered memo to Nelson comparing the two fit strategies recorded in Apr 20 report
+        memo detailing how the MoM sampling mesh destroys the orthogonality of the trigonometric functions
+    Apr 30: exchanged spreadsheets with Nelson to refine truncation criteria for Fourier expansions
+    Performed analysis on the truncation criteria for the Fourier decompositions
+        A. Magnitude of residual errors < 5 sq m at 3 sigma confidence
+        B. Magnitude of difference between data and fit < 10 sq m
+        C. Magnitude of residual errors < 5 sq m always
+    Worked with Chris to develop JavaScript version of a Fourier decomposition for timing measurements.
+    Created place-holder Jupyter notebook to hold accumulated Python scripts.

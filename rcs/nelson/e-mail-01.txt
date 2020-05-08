@@ -1,0 +1,12 @@
+
+BONITO, NELSON A GS-13 USAF AFMC AFRL/RVB
+Wed, Apr 15, 7:45 AM (11 days ago)
+to me, Christopher, Ye, Trevor, NELSON
+
+Dan,
+
+ 
+
+You’ve shown the analysis for the azimuth dependency, but I’d like to see the same fourier analysis done with the frequency dependence. 
+
+I’m looking for 10 degree azimuth slices represented by a function in frequency.  This would be less terms and I recognize some of the azimuth features would be lost by collapsing 10 degrees of azimuth structure into one value

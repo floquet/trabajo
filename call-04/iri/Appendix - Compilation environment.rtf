@@ -1,0 +1,58 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Hardware\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 $ lscpu
+\f2\b0 \
+Architecture:        x86_64\
+CPU op-mode(s):      32-bit, 64-bit\
+Byte Order:          Little Endian\
+CPU(s):              12\
+On-line CPU(s) list: 0-11\
+Thread(s) per core:  1\
+Core(s) per socket:  1\
+Socket(s):           12\
+Vendor ID:           GenuineIntel\
+CPU family:          6\
+Model:               158\
+Model name:          Intel(R) Core(TM) i7-8700B CPU @ 3.20GHz\
+Stepping:            10\
+CPU MHz:             3200.000\
+BogoMIPS:            6384.00\
+L1d cache:           32K\
+L1i cache:           32K\
+L2 cache:            256K\
+L3 cache:            12288K\
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht pbe syscall nx pdpe1gb lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq dtes64 ds_cpl ssse3 sdbg fma cx16 xtpr pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch pti fsgsbase bmi1 hle avx2 bmi2 erms rtm xsaveopt arat\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf2 $ cat /proc/meminfo
+\f2\b0 \cf0 \
+MemTotal:       57613160 kB\
+MemFree:        32086660 kB\
+MemAvailable:   56577184 kB\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b \
+Operating system
+\f3\b0 \
+
+\f1\b \cf2 $ lsb_release -a
+\f2\b0 \cf0 \
+LSB Version:	:core-4.1-amd64:core-4.1-noarch\
+Distributor ID:	CentOS\
+Description:	CentOS Linux release 8.1.1911 (Core) \
+Release:	8.1.1911\
+Codename:	Core\
+\
+}

@@ -1,0 +1,14 @@
+Hi Dan
+
+Here are our bullets for the April Call 4 report.
+
+    Performed analysis of magnetic field effects on ray-tracing in the context of the project application. Determined that these effects are significant and need to be included for even reasonable fidelity solutions.
+    Presented results to sponsor who concurred with conclusions. The results inform the use of ray tracing codes in the project and suggest that we will continue with PHaRLAP as a tool in Call 04.
+    Consulted ERT team on TICS/ALFA implementation in C, particularly on IRI module translation.
+    Started integrating components for ALFA python prototype.
+
+If you need anything else just let us know.
+
+Stay safe and healthy
+regards,
+Dwight

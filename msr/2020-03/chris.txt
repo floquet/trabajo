@@ -1,0 +1,4 @@
+
+
+    Ascertained consistency between the PHaRLAP-based IRI that TICS uses and the Goddard IRI, by calling the Goddard IRI executable.  Began testing calling Goddard IRI as a library (which Dan Topa excellently and quickly provided) instead of as an executable.
+    Began implementing a C version of the Python RIPE component of TICS.

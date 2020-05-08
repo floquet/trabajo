@@ -1,0 +1,40 @@
+Nelson:
+
+Thank you for taking the time to meet with me this morning. My plan was to talk you through the presentation sitting in your inbox,
+but you had already scanned and digested the contents. The slide deck served as a springboard for a beneficial discussion.
+The primary points are
+
+Priorities for the short term:
+1. Elevation data. 0-45° in 5° increments.
+2. You want to see a ship.
+
+After that: scaling exercises. Double the Sciacca airframe. Scale the ship through destroyer, frigate, and, littoral classes.
+
+The "OTH 101" talk was quite helpful. That would make a singularly useful slide deck!
+
+A general tone was how a solid mathematical foundation supports sound engineering decisions, and the goal
+is to make tradeoffs to advance the Dashboard. You discussed how constraints like radar operation, radar return,
+external data sources, ionospheric variability, and model fidelity deny definitive characterization of the problem.
+You tied this in to how the RCS exercise addresses your "need to get a feel for how this would be implemented."
+A synergistic success was realized from you nominating truncation criteria which were then evaluated using basic mathematical tools.
+
+General guidance:
+
+• You don't want to be killed in a data avalanche. Keep results concise.
+
+• Keep assembling results and documentation on process. We will use it later.
+
+Information:
+
+• Some alphabetic agency will be providing RCS data based on radar measurements of copper miniatures. The data will be decomposed
+    into elevation and azimuth (pitch and yaw).
+
+• You mentioned private aircraft, like Cessnas, may be of interest.
+
+• You mused aloud about variations in the optical shadow of the CAD models.
+
+• You told a story about radar being able to resolve the hangar door on an aircraft carrier at HF.
+
+• You discussed convolution kernels for smoothing scintillations at higher radar frequencies.
+
+• We discussed the benefits of having you walk through our bay and provide perturbative guidance. This is a quarantine casualty.

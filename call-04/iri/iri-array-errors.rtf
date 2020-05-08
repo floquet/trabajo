@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0  293       DO 3 N=3,3333                                              \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  294 C*****CORRECTOR (FIELD LINE TRACING)                             \
+ 295       P(1,N)=P(1,N-1)+STEP12*(5.*P(4,N)+8.*P(4,N-1)-P(4,N-2))    \
+ 296       P(2,N)=P(2,N-1)+STEP12*(5.*P(5,N)+8.*P(5,N-1)-P(5,N-2))    \
+ 297 C*****PREPARE EXPANSION COEFFICIENTS FOR INTERPOLATION           \
+ 298 C*****OF SLOWLY VARYING QUANTITIES                               \
+ 299       P(8,N)=STEP2*(P(1,N)*P(4,N)+P(2,N)*P(5,N))                 \
+ 300       C0=P(1,N-1)**2+P(2,N-1)**2                                 \
+ 301       C1=P(8,N-1)                                                \
+ 302       C2=(P(8,N)-P(8,N-2))*0.25                                  \
+ 303       C3=(P(8,N)+P(8,N-2)-C1-C1)/6.0\
+ 304       D0=P(6,N-1)                                                \
+ 305       D1=(P(6,N)-P(6,N-2))*0.5\
+ 306       D2=(P(6,N)+P(6,N-2)-D0-D0)*0.5                             \
+ 307       E0=P(7,N-1)\
+ 308       E1=(P(7,N)-P(7,N-2))*0.5                                   \
+ 309       E2=(P(7,N)+P(7,N-2)-E0-E0)*0.5                             \
+ 310 C*****INNER LOOP (FOR QUADRATURE)                                \
+ 294 4     T=(Z-P(3,N-1))/STEP                                        \
+ 294       IF(T.GT.1.)GOTO5                                           \
+ 294       HLI=0.5*(((C3*T+C2)*T+C1)*T+C0)                            \
+ 294       ZQ=Z*Z\
+ 294       R=HLI+SQRT(HLI*HLI+ZQ)\
+ 294       IF(R.LE.RMIN)GOTO30                               \
+ 294       RQ=R*R\
+ 294       FF=SQRT(1.+3.*ZQ/RQ)                              \
+ 294       RADIK=B0-((D2*T+D1)*T+D0)*R*RQ*FF                 \
+ 294       IF(R-RMAX)44,44,45                                \
+ 294 45    ICODE=2                                           \
+ 294       RADIK=RADIK-12.*(R-RMAX)**2                       \
+ 294 44    IF(RADIK+RADIK.LE.ORADIK) GOTO 10\
+ 294       TERM=SQRT(RADIK)*FF*((E2*T+E1)*T+E0)/(RQ+ZQ)      \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0   294      FI=FI+STP*(OTERM+TERM)                            \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  294       ORADIK=RADIK                                      \
+ 294       OTERM=TERM                                        \
+ 294       STP=R*STEQ                                        \
+ 294       Z=Z+STP                                           \
+ 294       GOTO4                                             \
+ 294 C*****PREDICTOR (FIELD LINE TRACING)                    \
+ 294 5     P(1,N+1)=P(1,N)+STEP12*(23.*P(4,N)-16.*P(4,N-1)+5.*P(4,N-2))  \
+ 294       P(2,N+1)=P(2,N)+STEP12*(23.*P(5,N)-16.*P(5,N-1)+5.*P(5,N-2))  \
+ 294       P(3,N+1)=P(3,N)+STEP                                          \
+ 294       CALL STOER(P(1,N+1),BQ3,R3)                                   \
+ 336 C*****SEARCH FOR LOWEST MAGNETIC FIELD STRENGTH\
+ 294       IF(BQ3.LT.BEQU) THEN\
+ 294         IEQU=N+1\
+ 294         BEQU=BQ3\
+ 294         ENDIF\
+ 341 3     CONTINUE}
