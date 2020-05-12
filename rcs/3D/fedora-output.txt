@@ -1,0 +1,61 @@
+root@b6a6d16ed3ca:bin $ . forward-sweep.sh
+Sun May 10 22:59:21 UTC 2020 forward-sweep.sh
+cp ../inputs/PTW-Materials.lib .
+cp ../inputs/PTW.facet .
+
+
+Step 1: elevation angle = -179 deg from North Pole
+
+  Substep 1.1: cp ../inputs/PTW-elev-0n179.geo .
+
+  Substep 1.2: ./MMoM_4.1.12 PTW-elev-0n179.geo > ../outputs/PTW-elev-0n179.out
+sh: junk: command not found
+
+  Substep 1.3: mv *.4112.* ../outputs/.
+
+  Substep 1.4: rm PTW-elev-0n179.geo
+
+time used to run PTW-elev-0n179.geo = 121 s
+
+
+Step 2: elevation angle = -178 deg from North Pole
+
+  Substep 2.1: cp ../inputs/PTW-elev-0n178.geo .
+
+  Substep 2.2: ./MMoM_4.1.12 PTW-elev-0n178.geo > ../outputs/PTW-elev-0n178.out
+sh: junk: command not found
+
+  Substep 2.3: mv *.4112.* ../outputs/.
+
+  Substep 2.4: rm PTW-elev-0n178.geo
+
+time used to run PTW-elev-0n178.geo = 115 s
+
+
+
+Step 360: elevation angle = 180 deg from North Pole
+
+  Substep 360.1: cp ../inputs/PTW-elev-0p180.geo .
+
+  Substep 360.2: ./MMoM_4.1.12 PTW-elev-0p180.geo > ../outputs/PTW-elev-0p180.out
+sh: junk: command not found
+
+  Substep 360.3: mv *.4112.* ../outputs/.
+
+  Substep 360.4: rm PTW-elev-0p180.geo
+
+time used to run PTW-elev-0p180.geo = 93 s
+
+
+Step 361: clear shared files
+
+  Substep 361.1: rm PTW-Materials.lib
+
+  Substep 361.2: rm PTW.facet
+
+  Substep 361.3: rm -r tempDir/
+
+time used = 44776 s
+Tue May 12 06:14:07 UTC 2020
+
+(12.44 hours)
