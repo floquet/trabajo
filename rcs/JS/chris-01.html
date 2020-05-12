@@ -1,0 +1,41 @@
+<html>
+    <body>
+        <button onclick='runDemo()'>Run</button>
+        <label id='outputLabel'></label>
+        <script type='text/javascript'>
+
+            function calculate2(a0, a1, a2, alpha) {
+                return a0/2 + (a1 * Math.cos(2.0 * alpha)) + (a2 * Math.cos(3.0 * alpha));
+            }
+
+            function calculate10(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, alpha) {
+                return a0/2 + (a1 * Math.cos(2.0 * alpha)) + (a2 * Math.cos(3.0 * alpha)) + (a3 * Math.cos(3.0 * alpha)) + (a4 * Math.cos(5.0 * alpha)) + (a5 * Math.cos(5.0 * alpha)) + (a6 * Math.cos(6.0 * alpha)) + (a7 * Math.cos(7.0 * alpha)) + (a8 * Math.cos(8.0 * alpha)) + (a9 * Math.cos(9.0 * alpha)) + (a10 * Math.cos(10.0 * alpha));
+            }
+
+            function getInterval(start) {
+                return Date.now() - start;
+            };
+
+
+
+            function runDemo() {
+                let start;
+
+                const outputLabelElement = document.getElementById('outputLabel');
+                var i;
+                start = Date.now();
+                for (i = 0; i < 100; i++) {
+                    outputLabelElement.innerText = 'Result: ' + calculate2(1, 2, 3, 0);
+                }
+                outputLabelElement.innerText = 'time for 100, d = 2: ' + getInterval(start);
+
+                start = Date.now();
+                for (i = 0; i < 100000; i++) {
+                    outputLabelElement.innerText = 'Result: ' + calculate10(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0);
+                }
+                outputLabelElement.innerText = 'time for 100000, d = 11:  ' + getInterval(start);
+            }
+
+        </script>
+    </body>
+</html>

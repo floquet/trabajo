@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <button onclick='runDemo()'>Run</button>
+        <label id='outputLabel'></label>
+        <script type='text/javascript'>
+
+            function calculate10(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, alpha) {
+                return a0/2 + ( a1 * Math.cos ( alpha) ) + ( a2 * Math.cos ( 2 * alpha) + ( a3 * Math.cos ( 3 * alpha) \
+                + ( a4 * Math.cos ( 4 * alpha) + ( a5 * Math.cos ( 5 * alpha) + ( a6 * Math.cos ( 6 * alpha) + ( a7 * Math.cos ( 7 * alpha)
+                + ( a8 * Math.cos ( 8 * alpha) + ( a9 * Math.cos ( 9 * alpha) + ( a10 * Math.cos ( 10 * alpha) + ( a11 * Math.cos ( 11 * alpha) \
+                + ( a12 * Math.cos ( 12 * alpha) + ( a13 * Math.cos ( 13 * alpha) + ( a14 * Math.cos ( 14 * alpha) + ( a15 * Math.cos ( 15 * alpha) \
+                + ( a16 * Math.cos ( 16 * alpha) + ( a17 * Math.cos ( 17 * alpha) + ( a18 * Math.cos ( 18 * alpha) + ( a19 * Math.cos ( 19 * alpha) \
+                + ( a20 * Math.cos ( 20 * alpha) + ( a21 * Math.cos ( 21 * alpha) + ( a22 * Math.cos ( 22 * alpha) + ( a23 * Math.cos ( 23 * alpha) \
+                + ( a24 * Math.cos ( 24 * alpha) + ( a25 * Math.cos ( 25 * alpha) + ( a26 * Math.cos ( 26 * alpha) + ( a27 * Math.cos ( 27 * alpha) \
+                + ( a28 * Math.cos ( 28 * alpha) + ( a29 * Math.cos ( 29 * alpha) + ( a30 * Math.cos ( 30 * alpha) + ( a31 * Math.cos ( 31 * alpha) \
+                + ( a32 * Math.cos ( 32 * alpha) + ( a33 * Math.cos ( 33 * alpha) + ( a34 * Math.cos ( 34 * alpha) + ( a35 * Math.cos ( 35 * alpha) \
+                + ( a36 * Math.cos ( 36 * alpha) + ( a37 * Math.cos ( 37 * alpha) + ( a38 * Math.cos ( 38 * alpha) + ( a39 * Math.cos ( 39 * alpha) \
+                + ( a40 * Math.cos ( 40 * alpha)
+            }
+
+            function getInterval(start) {
+                return Date.now() - start;
+            };
+
+            function runDemo() {
+                let start;
+
+                const outputLabelElement = document.getElementById('outputLabel');
+                var i;
+
+                start = Date.now();
+                for (i = 0; i < 100000; i++) {
+                    outputLabelElement.innerText = 'Result: ' + calculate10(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0);
+                }
+                outputLabelElement.innerText = 'time for 100000, d = 11:  ' + getInterval(start);
+            }
+
+        </script>
+    </body>
+</html>

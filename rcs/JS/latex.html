@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <button onclick='runDemo()'>Run</button>
+        <label id='outputLabel'></label>
+        <script type='text/javascript'>
+
+            function calculate2(a0, a1, a2, alpha) {
+                return a0/2 + (a1 * Math.cos(2.0 * alpha)) + (a2 * Math.cos(3.0 * alpha));
+            }
+
+            function getInterval(start) {
+                return Date.now() - start;
+            };
+
+            function runDemo() {
+                let start;
+
+                const outputLabelElement = document.getElementById('outputLabel');
+                var i;
+                start = Date.now();
+                for (i = 0; i < 10000; i++) {
+                    outputLabelElement.innerText = 'Result: ' + calculate2(1, 2, 3, 0);
+                }
+                outputLabelElement.innerText = 'time for 10000, d = 2: ' + getInterval(start);
+            }
+        </script>
+    </body>
+</html>
