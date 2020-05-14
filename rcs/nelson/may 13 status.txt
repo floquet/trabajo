@@ -1,0 +1,45 @@
+RCS status
+
+Start with progress on two high-priority items
+
+1. Creating a boat
+    No boat yet
+    There are boat tutorials on line, but they are overly detailed, or historical models (wooden ships)
+    Effort was made to find a *.stl file (CAD model); man exist, but behind pay walls
+    Currently working on a super simple CAD model - does not look military
+
+2. 3D data
+    3D has been run and plotted - we are looking for the overhead view which
+        lights up the fuselage and wings simultaneously
+    Scripts are being used
+    A set of simple tools have been created to generate scripts
+    Version control issues caused a few runs to be rejected
+    Episodic anomalies
+      For example:
+        libc.so.6          00007FAE133C30B3  Unknown               Unknown  Unknown
+        MMoM_4.1.12        000000000041D629  Unknown               Unknown  Unknown
+        forrtl: error (78): process killed (SIGTERM)
+    3D has pushed the limits of manual data analysis
+        MoM generates copious output ( GB range)
+        MoM can demand copious input
+        System is streamlined now with templates
+    For example: 360/361 data points
+    Working on packing data into HDF5 format with compression
+    This will be a common template for use with ABC data
+
+• We have completed a thorough documentation of our work
+    •• draft delivered to group on Monday
+    •• includes computational prescriptions
+    •• catalogs results
+    •• cross-references documentation to date
+    •• Ye has a carefully-crafted plan for distillation
+
+• We are working on a Python version of the data analysis for you
+    •• We expect the script to reflect a streamlined and simplified process
+    •• It will start with the CAD file, execute MoM, and present the RCS plots on your desktop
+
+• You mused about the optical cross section (shadow size) in our face-to-face on 4 May
+    •• Being intrigued, but time starved, I posed a question on Stack Exchange
+    •• Responses vary from 1 to 7 lines of code (= simple)
+    •• Question is very popular
+    •• Haven't run the codes yet
