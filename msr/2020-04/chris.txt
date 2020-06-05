@@ -1,0 +1,7 @@
+Discussed the baseline ALFA code (in particular, the discussion of requirements and of a directory hierarchy based on components), committed the baseline, and created makefiles for compiling and testing (S3HP-3)
+
+Corrected errors that occurred when running ALFA code tests (S3HP-34)
+
+Began improving the ALFA makefiles for CI/CD and future considerations (S3HP-39)
+
+Began discussing and designing a “virtual sounder” concept, in which the C version of RIPE will have two decoupled components: one component to read specific sounder data (e.g., NOAA station text files) and one component to process and interpolate sounder data independent from whence the sounder data comes (S3HP-40)

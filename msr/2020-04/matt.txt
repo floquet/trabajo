@@ -1,0 +1,15 @@
+What I Did:
+S3HP-2- Baseline existing all HF-POET code (Added all source code to BitBucket)
+S3HP-35 - Adapt homing algorithm for 2D ray tracing (Converted the homing algo from using analytic ray tracer to 2D)
+S3HP-38 - Adapt homing algorithm for 3D ray tracing (Converted the homing algo from using analytic ray tracer to 3D)
+S3HP-43 - Graphically display 2D Homing Results (Use a JavaScript library to graphically show the apogee height and range for a particular frequency)
+S3HP-12 - Converted Homing algorithm in 1D to approximate single azimuth shadow range (Initial work done for converting C source code into JavaScript)
+S3HP-42 - Create Output from ART as Input in 2D RT (Using the work done from S3HP-12, we can now narrow the values needed to run the homing algorithm)
+
+
+Challenges:
+New use of tools (JIRA, BitBucket) had a learning curve for process definition / workflow
+
+Next month challenges:
+Tie all the above tasks together to produce a cloud placement algorithm 
+Implement cloud placement in dashboard graphically

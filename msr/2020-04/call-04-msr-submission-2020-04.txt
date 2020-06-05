@@ -1,0 +1,60 @@
+Call 04 Monthly Status Report
+May 2020
+
+Table of Contents
+=================
+1. Boston College
+2. Trevor Crawford
+3. Eric Lahti
+4. Matt Lietz
+5. Chris McGeorge
+6. Dan Topa
+7. Jon White
+
+
+Progress and Achievements
+=========================
+
+1. Boston College (BC)
+• Participated in meetings with ERT prime collaborators to assist on translation of TICs module into C
+• Advised on ray-tracing strategies
+• Worked on area mapping module of ALFA "Enhanced" prototype in python
+• Sought guidance from AF government employees on behalf of the team.  
+
+2. Trevor Crawford
+• No report.
+
+3. Eric Lahti
+• Your achievements here.
+
+4. Matt Lietz
+• S3HP-2- Baseline existing all HF-POET code (Added all source code to BitBucket)
+• S3HP-35 - Adapt homing algorithm for 2D ray tracing (Converted the homing algo from using analytic ray tracer to 2D)
+• S3HP-38 - Adapt homing algorithm for 3D ray tracing (Converted the homing algo from using analytic ray tracer to 3D)
+• S3HP-43 - Graphically display 2D Homing Results (Use a JavaScript library to graphically show the apogee height and range for a particular frequency)
+• S3HP-12 - Converted Homing algorithm in 1D to approximate single azimuth shadow range (Initial work done for converting C source code into JavaScript)
+• S3HP-42 - Create Output from ART as Input in 2D RT (Using the work done from S3HP-12, we can now narrow the values needed to run the homing algorithm)
+
+Challenges:
+• New use of tools (JIRA, BitBucket) had a learning curve for process definition / workflow
+
+Next month challenges:
+• Tie all the above tasks together to produce a cloud placement algorithm 
+• Implement cloud placement in dashboard graphically
+
+
+5. Chris McGeorge
+• Discussed the baseline ALFA code (in particular, the discussion of requirements and of a directory hierarchy based on components), committed the baseline, and created makefiles for compiling and testing (S3HP-3)
+• Corrected errors that occurred when running ALFA code tests (S3HP-34)
+• Began improving the ALFA makefiles for CI/CD and future considerations (S3HP-39)
+• Began discussing and designing a “virtual sounder” concept, in which the C version of RIPE will have two decoupled components: one component to read specific sounder data (e.g., NOAA station text files) and one component to process and interpolate sounder data independent from whence the sounder data comes (S3HP-40)
+
+6. Dan Topa
+• No report.
+
+7. Jon White
+• Fixed bug in JS ART in which class members were not initialized correctly by relevant functions.
+• Redefined Cartesian coordinate system in numerical ray tracer to enable ray tracing along arbitrary azimuth in 2D.
+• Wrote function for finding apogee in numerical ray tracer.
+• Interpolator used in numerical ray tracer uses trilinear interpolation in 3D mode and bilinear interpolation in 2D mode.
+• Uploaded plots to Confluence verifying previous bullet.

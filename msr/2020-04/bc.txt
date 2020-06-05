@@ -1,0 +1,10 @@
+Hi Dan
+
+Participated in meetings
+interacted with ERT prime collaborators to assist on translation of TICs module into C
+
+Advised on ray-tracing strategies
+
+Worked on area mapping module of ALFA "Enhanced" prototype in python
+
+Sought guidance from AF government employees on behalf of the team.  

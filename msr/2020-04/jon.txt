@@ -1,0 +1,11 @@
+Jonathan White
+
+Fixed bug in JS ART in which class members were not initialized correctly by relevant functions.
+
+Redefined Cartesian coordinate system in numerical ray tracer to enable ray tracing along arbitrary azimuth in 2D.
+
+Wrote function for finding apogee in numerical ray tracer.
+
+Interpolator used in numerical ray tracer uses trilinear interpolation in 3D mode and bilinear interpolation in 2D mode.
+	
+Uploaded plots to Confluence verifying previous bullet.
