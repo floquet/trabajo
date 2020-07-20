@@ -1,0 +1,34 @@
+Call 01 Monthly Status Report
+June 2020
+
+Call-01 Radar Cross Section
+
+May 4: Delivery to Nelson
+• Delivered "Choosing Fourier Representations for nu = 3 - 30 MHz" (winners-02.pdf)
+Shows the application of Nelson's three proposed truncation schemes for Fourier representation.
+
+May 5: Delivery to Nelson
+• Delivered "Mercury Method of Moments: AFRL Quick Start Guide" (hg-mom.2, final), documenting the details of running Mercury MoM, specifically, how to take a FreeCAD model, run MoM, and harvest RCS data. This report focuses on the special case targets which are a shell of perfect electrically conducting (PEC) materials, an assumption which greatly reducess problem complexity.
+
+
+May 14: Delivery to Nelson
+• Delivered "Optimal Fourier Decompositions As A Function of Elevation Angle" (sweep-elevation-a.pdf): A summary report which applies Fourier analysis and the Bonito truncation data to with 28 radar frequencies (across 360 azimuth angles) across 10 elevation angles from 0° (nose on) to 45° above.
+• Delivered a series of panel plots, one for each angle in the elevation sequence. Also delivered the group of analysis plots (10 elevations x 28 frequencies x 6 views)
+• Delivered a list of Fourier amplitudes for the data sets above observing significant digits. Data was in a text form organized to make copy-and-paste trivial.
+• Delivered a table of validation results to allow the government to verify 2800 cut-and-paste operations were successful.
+• Delivered a physical DVD to government containing this sprawling data set.
+
+May 31: Delivery to Nelson
+• Delivered "Radar Cross Section Data Compression" (RCS-data-reduction-03.pdf): compendium of methods and results on the decomposition of the RCS data into reduced forms sufficiently detailed to support independent validation and duplication. Serves as foundation for summary reports
+
+• Uploaded file tranche to DI2E. Includes all codes and scripts. Complete collection of presentations and reports. Collects guidance documents from the government. Includes data files to reproduce results. Provides Mercury MoM executable in the [deployments (ITAR)] main bullet.
+
+• Need to move documentation into Confluence
+
+• Continued refinement of scripts into government requested "compiled form". A list of created, refined, or demonstrated executables:
+	• to to create LaTeX report delivered 14 May.
+	• tool to sweep a list of CAD *.obj and create MoM *.facet
+	• tool to sweep a sequence of elevation plots and perform simple analytics on how elevation changes RCS
+	• tool to create the MoM *.geo files for a sequence of files, and then create the bash script to run the files in MoM 
+
+• Actively working on the final report sketched out by Ye.
